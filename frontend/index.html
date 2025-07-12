@@ -6,19 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NACOM Computer Consults</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-gray-50">
+    <!-- Navigation bar -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo section -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-computer text-white text-lg"></i>
+                    </div>
+                    <span class="text-lg sm:text-xl font-bold text-gray-900">NACOM Computer Consults</span>
+                </div>
 
-<h1>Hello World</h1>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                    <a href="#"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Admin
+                        Login</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 p-2">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-1">
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Services</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                <a href="#"
+                    class="block mx-3 mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center">Admin
+                    Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
 
 
 
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-60">
+            <div class="text-center lg:text-left">
+                <div class="max-w-3xl mx-auto lg:mx-0">
+                    <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+                        Professional ICT
+                        <span class="text-blue-600 block">Consultancy</span>
+                        <span class="text-blue-600">Services</span>
+                    </h1>
 
+                    <p class="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl">
+                        Empowering businesses with cutting-edge technology solutions. From IT support to system
+                        integration, we deliver excellence in every project.
+                    </p>
 
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8">
+                        <a href="#"
+                            class="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl">
+                            Book a Service
+                        </a>
+                        <a href="#"
+                            class="border-2 border-blue-600 text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-blue-600 hover:text-white transition-colors font-semibold text-base sm:text-lg">
+                            Get in Touch
+                        </a>
+                    </div>
 
-<!-- .............JavaScript Link...............  -->
+                    <!-- Statistics Section - Inline -->
+                    <div class="flex flex-wrap gap-6 sm:gap-8 justify-center lg:justify-start">
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">150+</div>
+                            <div class="text-gray-600 font-medium text-xs sm:text-sm">Happy Clients</div>
+                        </div>
+
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">5+</div>
+                            <div class="text-gray-600 font-medium text-xs sm:text-sm">Years Experience</div>
+                        </div>
+
+                        <div class="text-center">
+                            <div class="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">24/7</div>
+                            <div class="text-gray-600 font-medium text-xs sm:text-sm">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- .............JavaScript Link...............  -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="main.js"></script>
 </body>
