@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-gray-50">
+
     <!-- Navigation bar -->
     <nav class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,49 +141,49 @@
                     <!-- Full Name -->
                     <div>
                         <label class="block font-semibold text-gray-800 mb-2">Full Name *</label>
-                        <input type="text" placeholder="Enter your full name"
+                        <input id="bks_coustomer_name" type="text" placeholder="Enter your full name"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
 
                     <!-- Email Address -->
                     <div>
                         <label class="block font-semibold text-gray-800 mb-2">Email Address *</label>
-                        <input type="email" placeholder="your.email@example.com"
+                        <input type="email" id="bks_coustomer_email" placeholder="your.email@example.com"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
 
                     <!-- Phone Number -->
                     <div>
                         <label class="block font-semibold text-gray-800 mb-2">Phone Number *</label>
-                        <input type="tel" placeholder="+233 55 288 6141"
+                        <input type="tel" id="bks_coustomer_phone_number" placeholder="+233 55 288 6141"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
 
                     <!-- Service Type -->
                     <div>
                         <label class="block font-semibold text-gray-800 mb-2">Service Type *</label>
-                        <select
+                        <select id="bks_coustomer_service_name"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option>Select Service Type</option>
-                            <option>IT Support & Maintenance</option>
-                            <option>Network Setup & Configuration</option>
-                            <option>System Integration</option>
-                            <option>Cloud Migration</option>
-                            <option>Software Installation</option>
-                            <option>Hardware Repair</option>
+                            <option value="">Select Service Type</option>
+                            <option value="IT Support & Maintenance">IT Support & Maintenance</option>
+                            <option value="Network Setup & Configuration">Network Setup & Configuration</option>
+                            <option value="System Integration">System Integration</option>
+                            <option value="Cloud Migration">Cloud Migration</option>
+                            <option value="Software Installation">Software Installation</option>
+                            <option value="Hardware Repair">Hardware Repair</option>
                         </select>
                     </div>
 
                     <!-- Preferred Date -->
                     <div class="md:col-span-2">
                         <label class="block font-semibold text-gray-800 mb-2">Preferred Date *</label>
-                        <input type="date"
+                        <input type="date" id="bks_coustomer_date"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
 
                     <!-- Submit Button -->
                     <div class="md:col-span-2">
-                        <button type="button" id="submitBtn"
+                        <button type="button" id="book_our_service_btn"
                             class="w-full bg-blue-600 text-white p-5 text-xl font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
                             Book Service
                         </button>

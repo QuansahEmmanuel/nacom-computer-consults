@@ -7,19 +7,23 @@ mobileMenuButton.addEventListener("click", () => {
 });
 // End of Mobile menu toggle
 
-// ...................Start Book Btn............
-const button = document.getElementById("submitBtn");
-const success = document.getElementById("successMessage");
+// Book Our Service
+document
+  .getElementById("book_our_service_btn")
+  .addEventListener("click", (e) => {
+    e.preventDefault();
 
-button.addEventListener("click", () => {
-  // Show the success message
-  success.classList.remove("hidden");
-  success.classList.add("flex");
+    // Get form values
+    const name = document.getElementById("bks_coustomer_name").value.trim();
+    const email = document.getElementById("bks_coustomer_email").value.trim();
+    const phone = document
+      .getElementById("bks_coustomer_phone_number")
+      .value.trim();
+    const service_name = document
+      .getElementById("bks_coustomer_service_name")
+      .value.trim();
+    const date = document.getElementById("bks_coustomer_date").value;
 
-  // Hide it again after 4 seconds
-  setTimeout(() => {
-    success.classList.remove("flex");
-    success.classList.add("hidden");
-  }, 4000);
-});
-// End Book Btn
+    // Log the data (for testing)
+    console.log({ name, email, phone, service_name, date });
+  });
