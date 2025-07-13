@@ -273,6 +273,221 @@
     </div> <!-- End Main Content -->
   </div> <!-- End Layout Wrapper -->
 
+
+ <!-- All Customer Enquiries Section -->
+<div id="enquirySection" class="page-content hidden">
+  <div class="bg-white rounded-lg shadow-sm">
+    <div class="p-6 border-b border-gray-200">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold text-gray-900">All Customer Enquiries</h2>
+        <div class="flex space-x-2">
+          <button onclick="filterEnquiries('all')" class="filter-btn px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200">All</button>
+          <button onclick="filterEnquiries('unread')" class="filter-btn px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200">Unread</button>
+          <button onclick="filterEnquiries('resolved')" class="filter-btn px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200">Resolved</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6">
+      <div class="space-y-6" id="enquiryList">
+        <!-- Enquiry Item -->
+        <div class="enquiry border border-gray-200 rounded-lg p-6" data-status="unread">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-semibold text-gray-900">John Doe</h3>
+              <p class="text-sm text-gray-600">johndoe@example.com</p>
+            </div>
+            <span class="text-sm text-gray-500">15 mins ago</span>
+          </div>
+          <div class="mb-4">
+            <h4 class="font-medium text-gray-900 mb-2">Subject: Need Help with Setup</h4>
+            <p class="text-gray-700">I'm having issues setting up the software. Can someone assist?</p>
+          </div>
+          <div class="flex space-x-3">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">Reply</button>
+            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 text-sm">Mark as Resolved</button>
+          </div>
+        </div>
+
+        <!-- Example: Resolved Enquiry -->
+        <div class="enquiry border border-gray-200 rounded-lg p-6" data-status="resolved">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-semibold text-gray-900">Mary Smith</h3>
+              <p class="text-sm text-gray-600">mary@example.com</p>
+            </div>
+            <span class="text-sm text-gray-500">30 mins ago</span>
+          </div>
+          <div class="mb-4">
+            <h4 class="font-medium text-gray-900 mb-2">Subject: Billing Issue</h4>
+            <p class="text-gray-700">I was double charged this month. Please review.</p>
+          </div>
+          <div class="flex space-x-3">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">Reply</button>
+            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 text-sm">Mark as Resolved</button>
+          </div>
+        </div>
+
+        <!-- More .enquiry items can be added here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- ..............Services....................  -->
+   <!-- Services Section -->
+<div id="servicesSection" class="hidden">
+  <div class="bg-white rounded-lg shadow-sm">
+    <div class="p-6 border-b border-gray-200">
+      <h2 class="text-lg font-semibold text-gray-900">Available Services</h2>
+    </div>
+    <div class="p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Repeat this block for each service -->
+        <div class="border border-gray-200 rounded-lg p-4">
+          <div class="flex items-center space-x-3 mb-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i class="ri-tools-line text-blue-600 text-lg"></i>
+            </div>
+            <h3 class="font-medium text-gray-900">Service Name</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Short description of the service.</p>
+          <div class="flex space-x-2">
+            <button class="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 cursor-pointer">
+              View Details
+            </button>
+          </div>
+        </div>
+        <!-- End repeat -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Selected Service -->
+  <div class="hidden" id="serviceModal">
+    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="p-6 border-b border-gray-200">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <i class="ri-tools-line text-blue-600 text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">Service Name</h3>
+            </div>
+            <button class="text-gray-400 hover:text-gray-600 cursor-pointer" onclick="closeServiceModal()">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-close-line text-xl"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-6 space-y-6">
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Service Description</h4>
+            <p class="text-gray-700">Full description of the service goes here.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Pricing & Duration</h4>
+              <div class="space-y-2">
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">Price:</span>
+                  <span class="text-sm font-medium text-green-600">GHS 100</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">Duration:</span>
+                  <span class="text-sm font-medium text-gray-900">1 hour</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">Availability:</span>
+                  <span class="text-sm font-medium text-blue-600">Weekdays</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-medium text-gray-900 mb-2">Features Included</h4>
+              <ul class="space-y-1">
+                <li class="flex items-center space-x-2">
+                  <div class="w-4 h-4 text-green-600 flex items-center justify-center">
+                    <i class="ri-check-line text-sm"></i>
+                  </div>
+                  <span class="text-sm text-gray-700">Feature One</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                  <div class="w-4 h-4 text-green-600 flex items-center justify-center">
+                    <i class="ri-check-line text-sm"></i>
+                  </div>
+                  <span class="text-sm text-gray-700">Feature Two</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 rounded-lg p-4">
+            <div class="flex items-start space-x-3">
+              <div class="w-5 h-5 text-blue-600 flex items-center justify-center mt-0.5">
+                <i class="ri-information-line"></i>
+              </div>
+              <div>
+                <h5 class="font-medium text-blue-900 mb-1">Need Help?</h5>
+                <p class="text-sm text-blue-800">
+                  Contact our support team for more information about this service or to schedule a consultation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-200 flex space-x-3">
+          <button onclick="closeServiceModal()" class="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 cursor-pointer">
+            Close
+          </button>
+          <button class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 cursor-pointer">
+            Book Service
+          </button>
+          <button class="border border-blue-600 text-blue-600 py-2 px-4 rounded-lg hover:bg-blue-50 cursor-pointer">
+            Contact Support
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+  function closeServiceModal() {
+    document.getElementById('serviceModal').classList.add('hidden');
+  }
+</script>
+
+..............................................................
+    <script>
+  // Show the enquiry section
+  function showEnquiries() {
+    document.getElementById('enquirySection').classList.remove('hidden');
+  }
+
+  // Filter enquiries
+  function filterEnquiries(status) {
+    const enquiries = document.querySelectorAll('.enquiry');
+    enquiries.forEach(enquiry => {
+      const enquiryStatus = enquiry.getAttribute('data-status');
+      if (status === 'all' || enquiryStatus === status) {
+        enquiry.classList.remove('hidden');
+      } else {
+        enquiry.classList.add('hidden');
+      }
+    });
+  }
+</script> -->
+
+
+
 </body>
 
 </html>
