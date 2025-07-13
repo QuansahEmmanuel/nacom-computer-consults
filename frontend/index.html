@@ -241,17 +241,25 @@
                 </p>
                 <form id="book_our_service_form" class="grid md:grid-cols-2 gap-8 text-lg">
                     <!-- Success Message (Initially Hidden) -->
-                    <div id="successMessage"
+                    <div id="booking_success_message"
                         class="hidden flex items-center gap-2 bg-green-100 text-green-800 border border-green-300 p-4 rounded-md col-span-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span id="successMessageText"></span>
+                        <span id="booking_success_message_text"></span>
                     </div>
-                    <!-- Error Message Display -->
-                    <div id="error_message_display" class="col-span-2"></div>
+                    <!-- Error Message (Initially Hidden) -->
+                    <div id="booking_error_message"
+                        class="hidden flex items-center gap-2 bg-red-100 text-red-800 border border-red-300 p-4 rounded-md col-span-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="booking_error_message_text"></span>
+                    </div>
 
                     <!-- Form Fields -->
                     <div>
@@ -303,44 +311,53 @@
                     Have questions about our services? Send us a message and we'll get back to you as soon as
                     possible.
                 </p>
-                <form class="grid md:grid-cols-2 gap-8 text-lg">
+                <form id="enquiries_form" class="grid md:grid-cols-2 gap-8 text-lg">
                     <!-- Success Message (Initially Hidden) -->
-                    <div id="successMessage"
-                        class="hidden w-full bg-green-100 border border-green-300 text-green-800 text-center px-6 py-4 rounded-md md:col-span-2">
-                        <div class="flex justify-center items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span class="text-base font-medium">Your message has been sent successfully!</span>
-                        </div>
+                    <div id="enquiries_success_message"
+                        class="hidden flex items-center gap-2 bg-green-100 text-green-800 border border-green-300 p-4 rounded-md col-span-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="enquiry_success_message_text"></span>
+                    </div>
+                    <!-- Error Message (Initially Hidden) -->
+                    <div id="enquiries_error_message"
+                        class="hidden flex items-center gap-2 bg-red-100 text-red-800 border border-red-300 p-4 rounded-md col-span-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="enquiry_error_message_text"></span>
                     </div>
 
                     <!-- Form Fields -->
                     <div>
                         <label class="block font-semibold text-gray-800 mb-2">Full Name *</label>
-                        <input type="text" placeholder="Enter your full name"
+                        <input type="text" placeholder="Enter your full name" id="enquiries_full_name"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
                     <div>
                         <label class="block font-semibold text-gray-800 mb-2">Email Address *</label>
-                        <input type="email" placeholder="your.email@example.com"
+                        <input type="email" placeholder="your.email@example.com" id="enquiries_email"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
                     <div class="md:col-span-2">
                         <label class="block font-semibold text-gray-800 mb-2">Subject *</label>
-                        <input type="text" placeholder="What's this about?"
+                        <input type="text" placeholder="What's this about?" id="enquiries_subject"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
                     <div class="md:col-span-2">
                         <label class="block font-semibold text-gray-800 mb-2">Message *</label>
                         <textarea placeholder="Tell us more about your enquiry..." maxlength="500"
+                            id="enquiries_message"
                             class="w-full border border-gray-300 p-4 text-lg rounded-lg h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                         <div class="text-sm text-gray-500 mt-1 text-right">0/500</div>
                     </div>
                     <div class="md:col-span-2">
-                        <button type="button" id="submitBtn"
+                        <button type="button" id="enquiries_send_message_btn"
                             class="w-full bg-blue-600 text-white p-5 text-xl font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
                             Send Message
                         </button>
