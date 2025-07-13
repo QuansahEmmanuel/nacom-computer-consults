@@ -70,7 +70,7 @@ document
           throw new Error(data.message || "Network response was not ok");
         }
 
-        console.log("Success:", data);
+        // console.log("Success:", data);
 
         // Show success message
         document.getElementById("successMessage").classList.remove("hidden");
