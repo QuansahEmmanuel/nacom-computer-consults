@@ -239,7 +239,7 @@
                     Schedule a consultation or book our professional ICT services. We're here to help transform your
                     business with technology.
                 </p>
-                <form class="grid md:grid-cols-2 gap-8 text-lg">
+                <form id="book_our_service_form" class="grid md:grid-cols-2 gap-8 text-lg">
                     <!-- Success Message (Initially Hidden) -->
                     <div id="successMessage"
                         class="hidden flex items-center gap-2 bg-green-100 text-green-800 border border-green-300 p-4 rounded-md col-span-2">
@@ -248,7 +248,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span>Your booking has been confirmed!</span>
+                        <span id="successMessageText"></span>
                     </div>
                     <!-- Error Message Display -->
                     <div id="error_message_display" class="col-span-2"></div>
