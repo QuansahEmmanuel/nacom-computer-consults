@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NACOM Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Admin Sidebar -->
+  <div class="w-80 bg-[#0f172a] text-white h-screen flex flex-col text-lg"> <!-- Increased base text size -->
+
+    <!-- Header -->
+    <div class="p-6 border-b border-gray-700">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+          <i class="fa-solid fa-computer text-white text-xl"></i> <!-- Bigger icon -->
+        </div>
+        <div>
+          <h2 class="font-bold text-2xl">NACOM</h2> <!-- Bigger text -->
+          <p class="text-gray-400 text-base">Admin Panel</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-1 p-5">
+      <ul class="space-y-4 text-lg"> <!-- Increased spacing and font size -->
+        <li>
+          <a href="/admin" class="flex items-center space-x-4 px-5 py-3 rounded-lg text-gray-300 hover:bg-blue-600 hover:text-white transition-colors">
+            <i class="fa-solid fa-table-cells-large text-xl"></i>
+            <span class="font-semibold">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/bookings" class="flex items-center space-x-4 px-5 py-3 rounded-lg text-gray-300 hover:bg-blue-600 hover:text-white transition-colors">
+            <i class="fa-regular fa-calendar text-xl"></i>
+            <span class="font-semibold">Bookings</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/enquiries" class="flex items-center space-x-4 px-5 py-3 rounded-lg text-gray-300 hover:bg-blue-600 hover:text-white transition-colors">
+            <i class="fa-regular fa-circle-question text-xl"></i>
+            <span class="font-semibold">Enquiries</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/services" class="flex items-center space-x-4 px-5 py-3 rounded-lg text-gray-300 hover:bg-blue-600 hover:text-white transition-colors">
+            <i class="fa-solid fa-screwdriver-wrench text-xl"></i>
+            <span class="font-semibold">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/reports" class="flex items-center space-x-4 px-5 py-3 rounded-lg text-gray-300 hover:bg-blue-600 hover:text-white transition-colors">
+            <i class="fa-solid fa-chart-column text-xl"></i>
+            <span class="font-semibold">Reports</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Logout -->
+    <div class="p-5 border-t border-gray-700">
+      <button class="w-full flex items-center space-x-4 px-5 py-3 hover:bg-gray-800 text-gray-300 hover:text-white rounded-lg transition-colors cursor-pointer">
+        <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center text-lg font-bold">N</div>
+        <span class="font-semibold text-lg">Logout</span>
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>
