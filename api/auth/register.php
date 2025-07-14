@@ -1,6 +1,4 @@
 <?php
-// Start session if needed (uncomment if you plan to use sessions)
-// session_start();
 
 // Include database connection
 include_once("db.connect.php");
