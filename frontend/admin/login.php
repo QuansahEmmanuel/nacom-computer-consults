@@ -21,19 +21,27 @@
             <p class="text-gray-600 mt-2">Access the admin dashboard</p>
         </div>
 
-        <form class="space-y-6">
+        <form class="space-y-6" action="../../backend/login.php" method="POST">
+
+            <!-- Show message -->
+            <?php if (isset($_GET['msg'])): ?>
+            <div class="alert alert-error text-center text-sm p-2 rounded bg-red-100 text-red-800">
+                <?php echo htmlspecialchars($_GET['msg']); ?>
+            </div>
+            <?php endif; ?>
+
             <div>
-                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-                <input type="text" id="username" name="username"
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="text" id="email" name="email"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter username" required />
+                    placeholder="Enter your email"  />
             </div>
 
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input type="password" id="password" name="password"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter password" required />
+                    placeholder="Enter password"  />
             </div>
 
             <button type="submit"
