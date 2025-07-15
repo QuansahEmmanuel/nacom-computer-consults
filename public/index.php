@@ -11,12 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Axios Connection  -->
+    <script src="./js/axios.min.js"></script>
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css ">
 
     <!-- Internal Style Sheet Link  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body class="bg-gray-50">
@@ -42,7 +44,7 @@
                         class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
                     <a href="#contact"
                         class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
-                    <a href="./admin/login.html"
+                    <a href="../views/auth/login.php"
                         class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Admin
                         Login</a>
                 </div>
@@ -63,7 +65,7 @@
                 <a href="#book_services"
                     class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Services</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-                <a href="./admin/login.html"
+                <a href="../views/auth/login.php"
                     class="block mx-3 mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center">Admin
                     Login</a>
             </div>
@@ -241,7 +243,7 @@
                 </p>
                 <form id="book_our_service_form" class="grid md:grid-cols-2 gap-8 text-lg">
                     <!-- Success Message (Initially Hidden) -->
-                    <div id="booking_success_message"
+                    <div id="booking_success_message_div"
                         class="hidden flex items-center gap-2 bg-green-100 text-green-800 border border-green-300 p-4 rounded-md col-span-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
                             viewBox="0 0 24 24">
@@ -251,7 +253,7 @@
                         <span id="booking_success_message_text"></span>
                     </div>
                     <!-- Error Message (Initially Hidden) -->
-                    <div id="booking_error_message"
+                    <div id="booking_error_message_div"
                         class="hidden flex items-center gap-2 bg-red-100 text-red-800 border border-red-300 p-4 rounded-md col-span-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
                             viewBox="0 0 24 24">
@@ -313,7 +315,7 @@
                 </p>
                 <form id="enquiries_form" class="grid md:grid-cols-2 gap-8 text-lg">
                     <!-- Success Message (Initially Hidden) -->
-                    <div id="enquiries_success_message"
+                    <div id="enquiries_success_message_div"
                         class="hidden flex items-center gap-2 bg-green-100 text-green-800 border border-green-300 p-4 rounded-md col-span-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
                             viewBox="0 0 24 24">
@@ -323,7 +325,7 @@
                         <span id="enquiry_success_message_text"></span>
                     </div>
                     <!-- Error Message (Initially Hidden) -->
-                    <div id="enquiries_error_message"
+                    <div id="enquiries_error_message_div"
                         class="hidden flex items-center gap-2 bg-red-100 text-red-800 border border-red-300 p-4 rounded-md col-span-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current shrink-0" fill="none"
                             viewBox="0 0 24 24">

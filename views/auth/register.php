@@ -17,11 +17,11 @@
             <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="ri-shield-user-line text-white text-2xl"></i>
             </div>
-            <h2 class="text-2xl font-bold text-gray-900">NACOM Admin Login</h2>
-            <p class="text-gray-600 mt-2">Access the admin dashboard</p>
+            <h2 class="text-2xl font-bold text-gray-900">NACOM || Register</h2>
+            <p class="text-gray-600 mt-2">Access the dashboard</p>
         </div>
 
-        <form class="space-y-6" action="../../backend/login.php" method="POST">
+        <form class="space-y-6" action="../../api/auth/register.php" method="POST">
 
             <!-- Show message -->
             <?php if (isset($_GET['msg'])): ?>
@@ -34,14 +34,24 @@
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input type="text" id="email" name="email"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter your email"  />
+                    placeholder="Enter your email" />
             </div>
+            <div class="mb-4">
+                <label for="enquiries_role" class="block text-sm font-medium text-gray-700">Select Role</label>
+                <select id="enquiries_role" name="role"
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm">
+                    <option value="">-- Select Role --</option>
+                    <option value="admin">Admin</option>
+                    <option value="support">Support</option>
+                </select>
+            </div>
+
 
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input type="password" id="password" name="password"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter password"  />
+                    placeholder="Enter password" />
             </div>
 
             <button type="submit"
@@ -52,7 +62,7 @@
 
 
         <div class="text-center mt-6">
-            <a href="../index.html" class="text-blue-600 hover:text-blue-700 text-sm cursor-pointer">
+            <a href="../../public/index.php" class="text-blue-600 hover:text-blue-700 text-sm cursor-pointer">
                 ← Back to Website
             </a>
         </div>

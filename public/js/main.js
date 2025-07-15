@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost/nacom-computer-consults/api";
+
 // Mobile menu toggle
 const mobileMenuButton = document.getElementById("mobile-menu-button");
 const mobileMenu = document.getElementById("mobile-menu");
@@ -31,9 +33,11 @@ document
     const errorMessageText = document.getElementById(
       "booking_error_message_text"
     );
-    const errorMessageDiv = document.getElementById("booking_error_message");
+    const errorMessageDiv = document.getElementById(
+      "booking_error_message_div"
+    );
     const successMessageDiv = document.getElementById(
-      "booking_success_message"
+      "booking_success_message_div"
     );
 
     // Validation
@@ -56,35 +60,27 @@ document
     }
 
     try {
-      const response = await fetch(
-        "http://localhost/nacom-computer-consults/backend/bookOurService.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name, email, phone, service_name, date }),
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/user/booking.php`, {
+        name,
+        email,
+        phone,
+        service_name,
+        date,
+      });
 
-      let result;
-      try {
-        result = await response.json();
-      } catch (jsonError) {
-        throw new Error("Server returned non-JSON response.");
+      const data = response.data;
+
+      // console.log(data.message);
+
+      if (data) {
+        // Show success message
+        successMessageText.innerText = data.message || "Booking successful!";
+        successMessageDiv.classList.remove("hidden");
+        errorMessageDiv.classList.add("hidden");
+
+        // Reset form
+        document.getElementById("book_our_service_form").reset();
       }
-
-      if (!response.ok) {
-        throw new Error(result.message || "Network response was not ok");
-      }
-
-      // Show success message
-      successMessageText.innerText = result.message || "Booking successful!";
-      successMessageDiv.classList.remove("hidden");
-      errorMessageDiv.classList.add("hidden");
-
-      // Reset form
-      document.getElementById("book_our_service_form").reset();
     } catch (error) {
       console.error("Error:", error);
 
@@ -95,6 +91,7 @@ document
       errorMessageDiv.classList.remove("hidden");
     }
   });
+
 // Email validation regex
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -108,75 +105,60 @@ function validatePhone(phone) {
 }
 // End of Book Our Service
 
-// Enquiries Form Submission
 document
   .getElementById("enquiries_send_message_btn")
   .addEventListener("click", async function (e) {
     e.preventDefault();
 
-    // Get form values
     const name = document.getElementById("enquiries_full_name").value.trim();
     const email = document.getElementById("enquiries_email").value.trim();
     const subject = document.getElementById("enquiries_subject").value.trim();
     const message = document.getElementById("enquiries_message").value.trim();
 
-    let successMessageText = document.getElementById(
-      "enquiry_success_message_text"
-    );
-    let errorMessageText = document.getElementById(
-      "enquiry_error_message_text"
-    );
+    const successText = document.getElementById("enquiry_success_message_text");
+    const errorText = document.getElementById("enquiry_error_message_text");
 
-    let errorMessage = "";
-    let successMessage = "";
+    const successDiv = document.getElementById("enquiries_success_message_div");
+    const errorDiv = document.getElementById("enquiries_error_message_div");
 
-    // Validation
+    // Hide all message boxes first
+    successDiv.classList.add("hidden");
+    errorDiv.classList.add("hidden");
+
     if (!name || !email || !subject || !message) {
-      errorMessage = "All fields are required.";
-      errorMessageText.innerHTML = errorMessage;
-      document
-        .getElementById("enquiries_error_message")
-        .classList.remove("hidden");
-    } else if (!validateEmail(email)) {
-      errorMessage = "Please enter a valid email address.";
-      errorMessageText.innerHTML = errorMessage;
-      document
-        .getElementById("enquiries_error_message")
-        .classList.remove("hidden");
-    } else {
-      try {
-        const response = await fetch(
-          "http://localhost/nacom-computer-consults/backend/generalEnquiries.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, subject, message }),
-          }
-        );
+      errorText.innerHTML = "All fields are required.";
+      errorDiv.classList.remove("hidden");
+      return;
+    }
 
-        // Parse JSON response
-        const data = await response.json();
+    if (!validateEmail(email)) {
+      errorText.innerHTML = "Please enter a valid email address.";
+      errorDiv.classList.remove("hidden");
+      return;
+    }
 
-        console.log(data.message);
+    try {
+      const response = await axios.post(`${BASE_URL}/user/enquiries.php`, {
+        name,
+        email,
+        subject,
+        message,
+      });
 
-        successMessage = data.message || "Enquiry sent successfully!";
-        successMessageText.innerHTML = successMessage;
-        document
-          .getElementById("enquiries_success_message")
-          .classList.remove("hidden");
+      const data = response.data;
 
-        // Reset form
+      if (data && data.status === "success") {
+        successText.innerHTML = data.message || "Enquiry sent successfully!";
+        successDiv.classList.remove("hidden");
         document.getElementById("enquiries_form").reset();
-      } catch (error) {
-        console.error("Error:", error);
-        errorMessage =
-          error.message || "Something went wrong. Please try again later.";
-        errorMessageText.innerHTML = errorMessage;
-        document
-          .getElementById("enquiries_error_message")
-          .classList.remove("hidden");
+      } else {
+        errorText.innerHTML = data.message || "Something went wrong.";
+        errorDiv.classList.remove("hidden");
       }
+    } catch (error) {
+      console.error("Error:", error);
+      errorText.innerHTML =
+        error.message || "Something went wrong. Please try again.";
+      errorDiv.classList.remove("hidden");
     }
   });
