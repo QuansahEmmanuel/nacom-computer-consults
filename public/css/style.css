@@ -1,0 +1,31 @@
+/* Ensure smooth scrolling and proper offset for sticky nav */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add padding-top to sections to account for sticky nav */
+.section-padding {
+    scroll-margin-top: 80px;
+}
+
+/* Mobile menu animation */
+#mobile-menu {
+    transition: all 0.3s ease;
+}
+
+#mobile-menu.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -30,7 +30,7 @@ $stmt->bind_param("sssss", $name, $email, $phone, $service, $date);
 if ($stmt->execute()) {
     echo json_encode([
         'status' => 'success',
-        'message' => 'Booking received!',
+        'message' => 'Booking received! We will give you a feedback very soon',
         'data' => [
             'booking_id' => $conn->insert_id,
             'name' => $name,
