@@ -11,7 +11,8 @@ function nav_link_classes($currentPage, $targetPage) {
 ?>
 
 <!-- Hamburger Button (Mobile Only) -->
-<button id="hamburgerBtn" class="lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-3 rounded-lg shadow-lg hover:bg-gray-700 transition-colors">
+<button id="hamburgerBtn"
+    class="lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-3 rounded-lg shadow-lg hover:bg-gray-700 transition-colors">
     <i class="fas fa-bars text-lg"></i>
 </button>
 
@@ -19,7 +20,8 @@ function nav_link_classes($currentPage, $targetPage) {
 <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
 
 <!-- Sidebar -->
-<aside id="sidebar" class="w-64 bg-gray-800 text-white fixed lg:relative h-full lg:h-screen z-50 -translate-x-full lg:translate-x-0 transform transition-transform duration-300 ease-in-out">
+<aside id="sidebar"
+    class="w-64 bg-gray-800 text-white fixed lg:relative h-full lg:h-screen z-50 -translate-x-full lg:translate-x-0 transform transition-transform duration-300 ease-in-out">
     <!-- Logo Section -->
     <div class="p-6 border-b border-gray-700">
         <div class="flex items-center space-x-3">
@@ -44,12 +46,20 @@ function nav_link_classes($currentPage, $targetPage) {
                 </a>
             </li>
 
+            <!-- User Management -->
+            <li>
+                <a href="index.php?page=user_management" class="<?= nav_link_classes($page, 'user_management') ?>">
+                    <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i> User Management
+                </a>
+            </li>
+
             <!-- Bookings -->
             <li>
                 <a href="index.php?page=bookings" class="<?= nav_link_classes($page, 'bookings') ?>">
                     <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i> Bookings
                 </a>
             </li>
+
 
             <!-- Enquiries -->
             <li>
@@ -71,12 +81,20 @@ function nav_link_classes($currentPage, $targetPage) {
                     <i class="fas fa-chart-bar w-5 h-5 mr-3"></i> Reports
                 </a>
             </li>
+
+            <!-- Settings -->
+            <li>
+                <a href="index.php?page=settings" class="<?= nav_link_classes($page, 'settings') ?>">
+                    <i class="fas fa-chart-bar w-5 h-5 mr-3"></i> System Settings
+                </a>
+            </li>
         </ul>
     </nav>
 
     <!-- Logout -->
     <div class="absolute bottom-4 left-4 right-4">
-        <a href="logout.php" class="flex items-center px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+        <a href="logout.php"
+            class="flex items-center px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
             <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> Logout
         </a>
     </div>

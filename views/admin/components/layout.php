@@ -1,7 +1,9 @@
 <!-- Loading Spinner -->
 <div id="loading" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
     <div class="text-center">
-        <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin mx-auto"></div>
+        <div
+            class="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin mx-auto">
+        </div>
         <p class="mt-4 text-gray-700 font-medium"></p>
     </div>
 </div>
@@ -30,6 +32,9 @@ switch ($page) {
     case 'bookings':
         include __DIR__ . '/../pages/bookings.php';
         break;
+    case 'user_management':
+        include __DIR__ . '/../pages/userManagement.php';
+        break;
     case 'enquiries':
         include __DIR__ . '/../pages/enquiries.php';
         break;
@@ -38,6 +43,9 @@ switch ($page) {
         break;
     case 'reports':
         include __DIR__ . '/../pages/reports.php';
+        break;
+        case 'settings':
+        include __DIR__ . '/../pages/settings.php';
         break;
     default:
         include __DIR__ . '/../pages/dashboard.php';
