@@ -74,7 +74,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    $stmt->close();
-    
-    $conn->close();
+   
 }

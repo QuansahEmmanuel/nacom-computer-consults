@@ -4,10 +4,13 @@ const BASE_URL = "http://localhost/nacom-computer-consults/api";
 const mobileMenuButton = document.getElementById("mobile-menu-button");
 const mobileMenu = document.getElementById("mobile-menu");
 
-mobileMenuButton.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
-});
+if (mobileMenuButton && mobileMenu) {
+  mobileMenuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+}
 // End of Mobile menu toggle
+
 
 // Book Our Service Form Submission
 document
@@ -40,6 +43,10 @@ document
       "booking_success_message_div"
     );
 
+    // Hide all message boxes first
+    successMessageDiv.classList.add("hidden");
+    errorMessageDiv.classList.add("hidden");
+
     // Validation
     if (!name || !email || !phone || !service_name || !date) {
       errorMessageText.innerHTML = "All fields are required.";
@@ -70,9 +77,7 @@ document
 
       const data = response.data;
 
-      // console.log(data.message);
-
-      if (data) {
+      if (data && data.status === "success") {
         // Show success message
         successMessageText.innerText = data.message || "Booking successful!";
         successMessageDiv.classList.remove("hidden");
@@ -80,6 +85,11 @@ document
 
         // Reset form
         document.getElementById("book_our_service_form").reset();
+      } else {
+        // Show error message
+        errorMessageText.innerText = data.message || "Something went wrong.";
+        errorMessageDiv.classList.remove("hidden");
+        successMessageDiv.classList.add("hidden");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -87,7 +97,7 @@ document
       // Hide success message and show error
       successMessageDiv.classList.add("hidden");
       errorMessageText.innerText =
-        error.message || "An unexpected error occurred.";
+        error.response?.data?.message || error.message || "An unexpected error occurred.";
       errorMessageDiv.classList.remove("hidden");
     }
   });
