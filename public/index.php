@@ -155,7 +155,7 @@
                         Professional network installation, configuration, and security setup for businesses of all
                         sizes.
                     </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵200</div>
+                    <div class="text-blue-600 font-medium">Starting at ₵200/hour</div>
                 </div>
 
                 <!-- Card 3: Custom Software Development -->
@@ -185,7 +185,7 @@
                         Professional data backup and recovery services to protect your valuable business
                         information.
                     </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵150</div>
+                    <div class="text-blue-600 font-medium">Starting at ₵150/hour</div>
                 </div>
 
                 <!-- Card 5: System Maintenance -->
