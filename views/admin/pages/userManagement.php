@@ -12,7 +12,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="container mx-auto">
+<div class="container mx-auto mt-8">
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="stat bg-base-100 shadow-lg rounded-lg">
@@ -151,61 +151,77 @@
     </div>
 </div>
 
-<!-- Add/Edit User Modal -->
+<!-- Responsive Add/Edit User Modal -->
 <dialog id="userModal" class="modal">
-    <div class="modal-box w-11/12 max-w-2xl">
-        <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    <div class="modal-box w-full sm:w-11/12 md:max-w-xl px-4 py-6">
+        <!-- Close Button -->
+        <form method="dialog" class="absolute right-4 top-4">
+            <button class="btn btn-sm btn-circle btn-ghost">✕</button>
         </form>
-        <h3 class="font-bold text-lg mb-4" id="modalTitle">Add New User</h3>
+
+        <!-- Modal Title -->
+        <h3 class="font-bold text-xl mb-6 text-center" id="modalTitle">
+            Add New User
+        </h3>
+
+        <!-- Main Form -->
         <form id="userForm" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">First Name</span>
-                    </label>
-                    <input type="text" class="input input-bordered" id="firstName" required>
-                </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Last Name</span>
-                    </label>
-                    <input type="text" class="input input-bordered" id="lastName" required>
-                </div>
+            <!-- Username -->
+            <div class="form-control w-full">
+                <label class="label">
+                    <span class="label-text">Username</span>
+                </label>
+                <input type="text" class="input input-bordered w-full" id="username" name="username" required
+                    autocomplete="username" />
             </div>
-            <div class="form-control">
+
+            <!-- Email -->
+            <div class="form-control w-full">
                 <label class="label">
                     <span class="label-text">Email</span>
                 </label>
-                <input type="email" class="input input-bordered" id="email" required>
+                <input type="email" class="input input-bordered w-full" id="email" name="email" required
+                    autocomplete="email" />
             </div>
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Role</span>
-                </label>
-                <select class="select select-bordered" id="role" required>
-                    <option value="">Select Role</option>
-                    <option value="admin">Administrator</option>
-                    <option value="support">Support Agent</option>
-                    <option value="user">User</option>
-                </select>
+
+            <!-- Responsive 2-Column for Role/Status on md+, stacked on mobile -->
+            <div class="flex flex-col md:flex-row gap-4">
+                <!-- Role -->
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Role</span>
+                    </label>
+                    <select class="select select-bordered w-full" id="role" name="role" required>
+                        <option value="">Select Role</option>
+                        <option value="admin">Administrator</option>
+                        <option value="support">Support Agent</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+
+                <!-- Status -->
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Status</span>
+                    </label>
+                    <select class="select select-bordered w-full" id="status" name="status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Status</span>
-                </label>
-                <select class="select select-bordered" id="status" required>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-            </div>
-            <div class="form-control" id="passwordSection">
+
+            <!-- Password -->
+            <div class="form-control w-full" id="passwordSection">
                 <label class="label">
                     <span class="label-text">Password</span>
                 </label>
-                <input type="password" class="input input-bordered" id="password" required>
+                <input type="password" class="input input-bordered w-full" id="password" name="password" required
+                    autocomplete="new-password" />
             </div>
-            <div class="modal-action">
+
+            <!-- Actions -->
+            <div class="flex justify-end gap-2 mt-6 modal-action">
                 <button type="button" class="btn btn-ghost" onclick="closeUserModal()">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="submitBtn">Add User</button>
             </div>

@@ -75,7 +75,7 @@
     <section id="home" class="relative bg-gradient-to-br from-blue-50 to-white min-h-screen flex items-center"
         style="background-image: url('./assets/hero_bg.jpg'); background-size: cover; background-position: center right; background-repeat: no-repeat;">
         <div class="absolute inset-0 bg-white/80"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="pt-50 md:pt-0 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
                     <div class="space-y-6">
