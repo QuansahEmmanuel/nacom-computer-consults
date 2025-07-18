@@ -4,8 +4,8 @@
         <h1 class="text-xl font-bold">User Management Dashboard</h1>
     </div>
     <div class="flex-none">
-        <button class="btn btn-primary" onclick="openAddUserModal()">
-            <i data-lucide="user-plus" class="w-4 h-4"></i>
+        <button class="btn btn-primary" onclick="my_modal_adduser.showModal()" class=" w-4 h-4">
+            <i class="fa-solid fa-user-plus"></i>
             Add User
         </button>
     </div>
@@ -60,7 +60,7 @@
                     <option value="inactive">Inactive</option>
                 </select>
             </div>
-            <button class="btn btn-outline" onclick="clearFilters()">Clear Filters</button>
+            <button class="btn btn-outline">Clear Filters</button>
         </div>
     </div>
 
@@ -70,6 +70,7 @@
             <table class="table table-zebra w-full">
                 <thead class="bg-base-200">
                     <tr>
+                        <th>#</th>
                         <th>User</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -80,69 +81,6 @@
                 </thead>
                 <tbody id="usersTableBody">
                     <!-- Sample Row -->
-                    <tr>
-                        <td>
-                            <div class="flex items-center gap-3">
-                                <div class="avatar placeholder">
-                                    <div class="bg-neutral text-neutral-content rounded-full w-12">
-                                        <span class="text-xs">JD</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">John Doe</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>john.doe@example.com</td>
-                        <td><span class="badge badge-primary">Administrator</span></td>
-                        <td><span class="badge badge-success">Active</span></td>
-                        <td>Jan 15, 2024</td>
-                        <td>
-                            <div class="flex gap-2">
-                                <button class="btn btn-sm btn-outline" onclick="openEditUserModal()">
-                                    <i class="fa-solid fa-user-pen"></i>
-                                </button>
-                                <button class="btn btn-sm btn-error btn-outline" onclick="openDeleteModal()">
-                                    <i class="fa-solid fa-user-xmark"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                    <tr>
-                        <td>
-                            <div class="flex items-center gap-3">
-                                <div class="avatar placeholder">
-                                    <div class="bg-neutral text-neutral-content rounded-full w-12">
-                                        <span class="text-xs">JS</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Jane Smith</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>jane.smith@example.com</td>
-                        <td>
-                            <span class="badge badge-secondary">Support Agent</span>
-                        </td>
-                        <td>
-                            <span class="badge badge-success">Active</span>
-                        </td>
-                        <td>Feb 20, 2024</td>
-                        <td>
-                            <div class="flex gap-2">
-                                <button class="btn btn-sm btn-outline">
-                                    <i class="fa-solid fa-user-pen"></i>
-
-                                </button>
-                                <button class="btn btn-sm btn-error btn-outline">
-                                    <i class="fa-solid fa-user-xmark"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
 
 
                 </tbody>
@@ -151,47 +89,52 @@
     </div>
 </div>
 
-<!-- Responsive Add/Edit User Modal -->
-<dialog id="userModal" class="modal">
-    <div class="modal-box w-full sm:w-11/12 md:max-w-xl px-4 py-6">
-        <!-- Close Button -->
-        <form method="dialog" class="absolute right-4 top-4">
-            <button class="btn btn-sm btn-circle btn-ghost">✕</button>
-        </form>
+<!-- Add User Modal -->
+<dialog id="my_modal_adduser" class="modal">
+    <div class="modal-box w-11/12 max-w-2xl p-6 rounded-2xl shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-semibold text-gray-800">Add New User</h3>
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost hover:bg-gray-200">✕</button>
+            </form>
+        </div>
 
-        <!-- Modal Title -->
-        <h3 class="font-bold text-xl mb-6 text-center" id="modalTitle">
-            Add New User
-        </h3>
+        <!-- Alerts -->
+        <div class="space-y-2 mb-4">
+            <div id="error_div" class="hidden">
+                <div class="alert alert-error shadow-sm text-sm py-2 px-4">
+                    <span id="error_text"></span>
+                </div>
+            </div>
+            <div id="success_div" class="hidden">
+                <div class="alert alert-success shadow-sm text-sm py-2 px-4">
+                    <span id="success_text"></span>
+                </div>
+            </div>
+        </div>
 
-        <!-- Main Form -->
-        <form id="userForm" class="space-y-4">
+        <!-- Form -->
+        <form id="userForm" class="space-y-5">
             <!-- Username -->
-            <div class="form-control w-full">
-                <label class="label">
-                    <span class="label-text">Username</span>
-                </label>
-                <input type="text" class="input input-bordered w-full" id="username" name="username" required
-                    autocomplete="username" />
+            <div>
+                <label class="label font-medium text-sm text-gray-700" for="username">Username</label>
+                <input type="text" id="username" name="username" class="input input-bordered w-full"
+                    placeholder="Enter username" autocomplete="username" />
             </div>
 
             <!-- Email -->
-            <div class="form-control w-full">
-                <label class="label">
-                    <span class="label-text">Email</span>
-                </label>
-                <input type="email" class="input input-bordered w-full" id="email" name="email" required
-                    autocomplete="email" />
+            <div>
+                <label class="label font-medium text-sm text-gray-700" for="email">Email</label>
+                <input type="email" id="email" name="email" class="input input-bordered w-full"
+                    placeholder="Enter email" autocomplete="email" />
             </div>
 
-            <!-- Responsive 2-Column for Role/Status on md+, stacked on mobile -->
+            <!-- Role & Status -->
             <div class="flex flex-col md:flex-row gap-4">
-                <!-- Role -->
-                <div class="form-control w-full">
-                    <label class="label">
-                        <span class="label-text">Role</span>
-                    </label>
-                    <select class="select select-bordered w-full" id="role" name="role" required>
+                <div class="w-full">
+                    <label class="label font-medium text-sm text-gray-700" for="role">Role</label>
+                    <select id="role" name="role" class="select select-bordered w-full">
                         <option value="">Select Role</option>
                         <option value="admin">Administrator</option>
                         <option value="support">Support Agent</option>
@@ -199,12 +142,9 @@
                     </select>
                 </div>
 
-                <!-- Status -->
-                <div class="form-control w-full">
-                    <label class="label">
-                        <span class="label-text">Status</span>
-                    </label>
-                    <select class="select select-bordered w-full" id="status" name="status" required>
+                <div class="w-full">
+                    <label class="label font-medium text-sm text-gray-700" for="status">Status</label>
+                    <select id="status" name="status" class="select select-bordered w-full">
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
@@ -212,80 +152,183 @@
             </div>
 
             <!-- Password -->
-            <div class="form-control w-full" id="passwordSection">
-                <label class="label">
-                    <span class="label-text">Password</span>
-                </label>
-                <input type="password" class="input input-bordered w-full" id="password" name="password" required
-                    autocomplete="new-password" />
+            <div>
+                <label class="label font-medium text-sm text-gray-700" for="password">Password</label>
+                <input type="password" id="password" name="password" class="input input-bordered w-full"
+                    placeholder="Create a secure password" autocomplete="new-password" />
             </div>
 
             <!-- Actions -->
-            <div class="flex justify-end gap-2 mt-6 modal-action">
-                <button type="button" class="btn btn-ghost" onclick="closeUserModal()">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="submitBtn">Add User</button>
+            <div class="modal-action mt-6 flex justify-end gap-2">
+                <button type="button" id="submitBtn" class="btn btn-primary">+ Add User</button>
+                <form method="dialog">
+                    <button class="btn btn-outline">Cancel</button>
+                </form>
             </div>
         </form>
     </div>
 </dialog>
 
-<!-- Delete Confirmation Modal -->
-<dialog id="deleteModal" class="modal">
-    <div class="modal-box">
-        <h3 class="font-bold text-lg">Confirm Delete</h3>
-        <p class="py-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+
+<!-- Delete Modal  -->
+<dialog id="my_modal_4" class="modal">
+    <div class="modal-box w-11/12 max-w-5xl">
+        <h3 class="text-lg font-bold">Delete User</h3>
+        <p class="py-4">Are you sure you want to delete User</p>
         <div class="modal-action">
-            <button class="btn btn-ghost" onclick="closeDeleteModal()">Cancel</button>
-            <button class="btn btn-error" id="confirmDeleteBtn">Delete</button>
+            <button type="button" id="deleteBtn" class="btn btn-error"><i class="fa-solid fa-trash"></i>
+                Delete</button>
+            <form method="dialog">
+                <!-- if there is a button, it will close the modal -->
+                <button class="btn"> Close X</button>
+            </form>
         </div>
     </div>
 </dialog>
 
-<!-- JavaScript for Modal Functionality -->
+
 <script>
-// Open Add User Modal
-function openAddUserModal() {
-    document.getElementById('modalTitle').textContent = 'Add New User';
-    document.getElementById('submitBtn').textContent = 'Add User';
-    document.getElementById('passwordSection').style.display = 'block'; // Show password field for add
-    document.getElementById('userForm').reset();
-    document.getElementById('userModal').showModal();
-}
+//Base Url
+const BASE_URL = "http://localhost/nacom-computer-consults/api/auth"
 
-// Open Edit Modal (Example)
-function openEditUserModal() {
-    document.getElementById('modalTitle').textContent = 'Edit User';
-    document.getElementById('submitBtn').textContent = 'Save Changes';
-    document.getElementById('passwordSection').style.display = 'none'; // Hide password for edit
-    document.getElementById('userForm').reset();
-    document.getElementById('userModal').showModal();
-}
 
-// Open Delete Modal (Example)
-function openDeleteModal() {
-    document.getElementById('deleteModal').showModal();
-}
+// Get All Users from Backend 
+const viewUsers = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/viewUser.php`);
+        const {
+            status,
+            data
+        } = res.data;
 
-// Close Modals
-function closeUserModal() {
-    document.getElementById('userModal').close();
-}
+        const tableBody = document.getElementById("usersTableBody");
+        tableBody.innerHTML = ""; // Clear previous content
 
-function closeDeleteModal() {
-    document.getElementById('deleteModal').close();
-}
+        if (status === "success") {
+            data.forEach((user, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                                <td>
+                                    <div class= "p-3">
+                                        <span class="text-xs">${index + 1}</span>
+                                    </div>
+                                    </td>
+                                <td>
+                                    <div class="font-bold">${user.username}</div>
+                                </td>
+                                <td>${user.email}</td>
+                                <td><span class="badge badge-primary">${user.role}</span></td>
+                                <td><span class="badge ${user.status === "active" ? "badge-success" : "badge-error"}">${user.status}</span></td>
+                                <td>${new Date(user.created_at).toLocaleDateString()}</td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="btn btn-sm btn-outline" onclick="openEditUserModal(${user.id})">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-error btn-outline" onclick="my_modal_4.showModal(${user.id})">
+                                            <i class="fa-solid fa-user-xmark"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            `;
+                tableBody.appendChild(row);
+            });
 
-// Handle form submission
-document.getElementById('userForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    closeUserModal();
-    // Add your save logic here
+        } else {
+            tableBody.innerHTML =
+                `<tr><td colspan="6" class="text-center text-red-500">No users found</td></tr>`;
+        }
+    } catch (error) {
+        console.error("Error loading users:", error);
+        document.getElementById("usersTableBody").innerHTML =
+            `<tr><td colspan="6" class="text-center text-red-500">Server error</td></tr>`;
+    }
+};
+
+viewUsers();
+// ......................................
+
+// Add Users  
+document.getElementById("submitBtn").addEventListener("click", async () => {
+    const userName = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const status = document.getElementById("status").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const error_div = document.getElementById("error_div");
+    const error_text = document.getElementById("error_text");
+    const success_div = document.getElementById("success_div");
+    const success_text = document.getElementById("success_text");
+
+    // Reset messages
+    error_div.classList.add("hidden");
+    success_div.classList.add("hidden");
+
+    // Validation
+    if (!userName || !email || !role || !status || !password) {
+        error_text.textContent = "All fields are required.";
+        error_div.classList.remove("hidden");
+
+        // Auto-hide error after 5 seconds
+        setTimeout(() => {
+            error_div.classList.add("hidden");
+        }, 5000);
+
+        return;
+    }
+
+    try {
+        const res = await axios.post(`${BASE_URL}/addUser.php`, {
+            username: userName,
+            email: email,
+            role: role,
+            status: status,
+            password: password
+        });
+
+        const data = res.data;
+
+        if (data.status === "success") {
+            success_text.textContent = data.message || "User added successfully!";
+            success_div.classList.remove("hidden");
+
+            // Auto-hide success after 5 seconds
+            setTimeout(() => {
+                success_div.classList.add("hidden");
+            }, 5000);
+
+            // Optionally, reset form fields
+            document.getElementById("username").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("role").value = "";
+            document.getElementById("status").value = "";
+            document.getElementById("password").value = "";
+
+            // Refresh table (if needed)
+            if (typeof viewUsers === "function") viewUsers();
+        } else {
+            error_text.textContent = data.message || "Failed to add user.";
+            error_div.classList.remove("hidden");
+
+            // Auto-hide error after 5 seconds
+            setTimeout(() => {
+                error_div.classList.add("hidden");
+            }, 5000);
+        }
+
+    } catch (err) {
+        console.error(err);
+        error_text.textContent = "Server error. Please try again.";
+        error_div.classList.remove("hidden");
+
+        // Auto-hide error after 5 seconds
+        setTimeout(() => {
+            error_div.classList.add("hidden");
+        }, 5000);
+    }
 });
 
-// Clear filters (example)
-function clearFilters() {
-    document.getElementById('searchInput').value = '';
-    document.getElementById('roleFilter').value = '';
-    document.getElementById('statusFilter').value = '';
-}
+
+// Delete User 
 </script>
