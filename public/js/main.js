@@ -11,7 +11,6 @@ if (mobileMenuButton && mobileMenu) {
 }
 // End of Mobile menu toggle
 
-
 // Book Our Service Form Submission
 document
   .getElementById("book_our_service_btn")
@@ -51,18 +50,21 @@ document
     if (!name || !email || !phone || !service_name || !date) {
       errorMessageText.innerHTML = "All fields are required.";
       errorMessageDiv.classList.remove("hidden");
+      setTimeout(() => errorMessageDiv.classList.add("hidden"), 3000);
       return;
     }
 
     if (!validateEmail(email)) {
       errorMessageText.innerHTML = "Please enter a valid email address.";
       errorMessageDiv.classList.remove("hidden");
+      setTimeout(() => errorMessageDiv.classList.add("hidden"), 3000);
       return;
     }
 
     if (!validatePhone(phone)) {
       errorMessageText.innerHTML = "Please enter a valid phone number.";
       errorMessageDiv.classList.remove("hidden");
+      setTimeout(() => errorMessageDiv.classList.add("hidden"), 3000);
       return;
     }
 
@@ -73,6 +75,7 @@ document
         phone,
         service_name,
         date,
+        status: "pending",
       });
 
       const data = response.data;
@@ -85,11 +88,15 @@ document
 
         // Reset form
         document.getElementById("book_our_service_form").reset();
+
+        // Hide success after 3 seconds
+        setTimeout(() => successMessageDiv.classList.add("hidden"), 3000);
       } else {
         // Show error message
         errorMessageText.innerText = data.message || "Something went wrong.";
         errorMessageDiv.classList.remove("hidden");
         successMessageDiv.classList.add("hidden");
+        setTimeout(() => errorMessageDiv.classList.add("hidden"), 3000);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -97,8 +104,11 @@ document
       // Hide success message and show error
       successMessageDiv.classList.add("hidden");
       errorMessageText.innerText =
-        error.response?.data?.message || error.message || "An unexpected error occurred.";
+        error.response?.data?.message ||
+        error.message ||
+        "An unexpected error occurred.";
       errorMessageDiv.classList.remove("hidden");
+      setTimeout(() => errorMessageDiv.classList.add("hidden"), 3000);
     }
   });
 
@@ -113,8 +123,6 @@ function validatePhone(phone) {
   const re = /^\+?[0-9\s\-()]{7,}$/;
   return re.test(phone);
 }
-// End of Book Our Service
-
 document
   .getElementById("enquiries_send_message_btn")
   .addEventListener("click", async function (e) {

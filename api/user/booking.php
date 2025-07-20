@@ -11,6 +11,7 @@ if (!$data || !isset($data['name'], $data['email'], $data['phone'], $data['servi
 $name = trim($data['name']);
 $email = trim($data['email']);
 $phone = trim($data['phone']);
+$status = trim($data['status']);
 $service = trim($data['service_name']);
 $date = trim($data['date']);
 
@@ -24,8 +25,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-$stmt = $conn->prepare("INSERT INTO bookings (customer_name, customer_email, customer_phone_number, service_name, booking_date) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $name, $email, $phone, $service, $date);
+$stmt = $conn->prepare("INSERT INTO bookings (customer_name, customer_email, customer_phone_number, service_name,booking_status, booking_date) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssss", $name, $email, $phone, $service,$status, $date);
 
 if ($stmt->execute()) {
     echo json_encode([
@@ -36,6 +37,7 @@ if ($stmt->execute()) {
             'name' => $name,
             'email' => $email,
             'phone' => $phone,
+            'status' => $status,
             'service' => $service,
             'date' => $date
         ]
