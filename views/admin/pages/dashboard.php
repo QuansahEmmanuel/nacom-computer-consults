@@ -6,7 +6,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-600 text-sm">Total Bookings</p>
-                    <p class="text-3xl font-bold text-gray-800">198</p>
+                    <p class="text-3xl font-bold text-gray-800" id="total_booking"></p>
                     <p class="text-green-600 text-sm">+12% from last month</p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -19,7 +19,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-600 text-sm">Enquiries</p>
-                    <p class="text-3xl font-bold text-gray-800">43</p>
+                    <p class="text-3xl font-bold text-gray-800" id="total_enquiries"></p>
                     <p class="text-green-600 text-sm">+8% from last month</p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -32,7 +32,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-600 text-sm">Services</p>
-                    <p class="text-3xl font-bold text-gray-800">8</p>
+                    <p class="text-3xl font-bold text-gray-800" id="total_service"></p>
                     <p class="text-gray-600 text-sm">0% from last month</p>
                 </div>
                 <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -125,8 +125,10 @@
                         <i class="fas fa-calendar-plus text-white"></i>
                     </div>
                     <div>
-                        <p class="font-medium text-gray-800">Manage Bookings</p>
-                        <p class="text-sm text-gray-600">View and manage customer bookings</p>
+                        <a href="index.php?page=bookings">
+                            <p class="font-medium text-gray-800">Manage Bookings</p>
+                            <p class="text-sm text-gray-600">View and manage customer bookings</p>
+                        </a>
                     </div>
                     <i class="fas fa-chevron-right text-gray-400 ml-auto"></i>
                 </div>
@@ -137,8 +139,10 @@
                         <i class="fas fa-question-circle text-white"></i>
                     </div>
                     <div>
-                        <p class="font-medium text-gray-800">Review Enquiries</p>
-                        <p class="text-sm text-gray-600">Respond to customer enquiries</p>
+                        <a href="index.php?page=enquiries">
+                            <p class="font-medium text-gray-800">Review Enquiries</p>
+                            <p class="text-sm text-gray-600">Respond to customer enquiries</p>
+                        </a>
                     </div>
                     <i class="fas fa-chevron-right text-gray-400 ml-auto"></i>
                 </div>
@@ -149,8 +153,10 @@
                         <i class="fas fa-cogs text-white"></i>
                     </div>
                     <div>
-                        <p class="font-medium text-gray-800">Manage Services</p>
-                        <p class="text-sm text-gray-600">Add or edit service offerings</p>
+                        <a href="index.php?page=services">
+                            <p class="font-medium text-gray-800">Manage Services</p>
+                            <p class="text-sm text-gray-600">Add or edit service offerings</p>
+                        </a>
                     </div>
                     <i class="fas fa-chevron-right text-gray-400 ml-auto"></i>
                 </div>
@@ -158,3 +164,71 @@
         </div>
     </div>
 </div>
+
+
+<script>
+const BASE_URL = "http://localhost/nacom-computer-consults/api/admin";
+
+const getTotalBookinds = async () => {
+    const totalBookingEl = document.getElementById("total_booking");
+
+    try {
+        const res = await axios.get(`${BASE_URL}/dashboard.php`);
+        const data = res.data;
+
+        if (data.status === "success" && data.total_bookings !== undefined) {
+            totalBookingEl.innerText = data.total_bookings;
+        } else {
+            totalBookingEl.innerText = "0";
+            console.error("No booking data received.");
+        }
+    } catch (error) {
+        console.error("Failed to fetch total bookings:", error);
+        totalBookingEl.innerText = "0";
+    }
+};
+
+getTotalBookinds();
+
+const getTotalEnquires = async () => {
+    const totalEnquiresEl = document.getElementById("total_enquiries");
+
+    try {
+        const res = await axios.get(`${BASE_URL}/dashboard.php`);
+        const data = res.data;
+
+        if (data.status === "success" && data.total_enquiries !== undefined) {
+            totalEnquiresEl.innerText = data.total_enquiries;
+        } else {
+            totalEnquiresEl.innerText = "0";
+            console.error("No Enquiries data received.");
+        }
+    } catch (error) {
+        console.error("Failed to fetch total Enquiries:", error);
+        totalEnquiresEl.innerText = "0";
+    }
+};
+getTotalEnquires()
+
+
+const getTotalServices = async () => {
+    const totalServiceEl = document.getElementById("total_service");
+
+    try {
+        const res = await axios.get(`${BASE_URL}/dashboard.php`);
+        const data = res.data;
+
+        if (data.status === "success" && data.total_service !== undefined) {
+            totalServiceEl.innerText = data.total_service;
+        } else {
+            totalServiceEl.innerText = "0";
+            console.error("No Service data received.");
+        }
+    } catch (error) {
+        console.error("Failed to fetch total Service:", error);
+        totalServiceEl.innerText = "0";
+    }
+};
+
+getTotalServices()
+</script>

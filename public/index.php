@@ -126,97 +126,9 @@
                 expert support.
             </p>
 
-            <!-- Service Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1: IT Support & Troubleshooting -->
-                <div class="bg-white rounded-lg shadow-md p-6 border">
-                    <div class="flex items-center justify-start space-x-4 mb-4">
-                        <div class="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-circle text-blue-600"></i>
-                        </div>
-                        <h2 class="text-xl font-semibold">IT Support & Troubleshooting</h2>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        24/7 technical support and troubleshooting services to resolve hardware and software issues
-                        quickly and efficiently.
-                    </p>
-                    <div class="text-blue-600 font-medium">Starting at $50/hour</div>
-                </div>
+            <!-- Service Cards Grid (dynamic container) -->
+            <div id="services_grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-                <!-- Card 2: Network Setup & Configuration -->
-                <div class="bg-white rounded-lg shadow-md p-6 border">
-                    <div class="flex items-center justify-start space-x-4 mb-4">
-                        <div class="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-circle text-yellow-600"></i>
-                        </div>
-                        <h2 class="text-xl font-semibold">Network Setup & Configuration</h2>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Professional network installation, configuration, and security setup for businesses of all
-                        sizes.
-                    </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵200/hour</div>
-                </div>
-
-                <!-- Card 3: Custom Software Development -->
-                <div class="bg-white rounded-lg shadow-md p-6 border">
-                    <div class="flex items-center justify-start space-x-4 mb-4">
-                        <div class="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-code text-green-600"></i>
-                        </div>
-                        <h2 class="text-xl font-semibold">Custom Software Development</h2>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Bespoke software solutions tailored to your business needs, from web applications to desktop
-                        software.
-                    </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵100/hour</div>
-                </div>
-
-                <!-- Card 4: Data Recovery Services -->
-                <div class="bg-white rounded-lg shadow-md p-6 border">
-                    <div class="flex items-center justify-start space-x-4 mb-4">
-                        <div class="w-6 h-6 bg-purple-200 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-box-open text-purple-600"></i>
-                        </div>
-                        <h2 class="text-xl font-semibold">Data Recovery Services</h2>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Professional data backup and recovery services to protect your valuable business
-                        information.
-                    </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵150/hour</div>
-                </div>
-
-                <!-- Card 5: System Maintenance -->
-                <div class="bg-white rounded-lg shadow-md p-6 border">
-                    <div class="flex items-center justify-start space-x-4 mb-4">
-                        <div class="w-6 h-6 bg-red-200 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-heart-pulse text-red-600"></i>
-                        </div>
-                        <h2 class="text-xl font-semibold">System Maintenance</h2>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Regular system maintenance and optimization to ensure peak performance and security.
-                    </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵75/hour</div>
-                </div>
-
-                <!-- Card 6: IT Consultation -->
-                <div class="bg-white rounded-lg shadow-md p-6 border">
-                    <div class="flex items-center justify-start space-x-4 mb-4">
-                        <div class="w-6 h-6 bg-indigo-200 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-magnifying-glass text-indigo-600"></i>
-                        </div>
-                        <h2 class="text-xl font-semibold">IT Consultation</h2>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Strategic IT consulting to help you make informed technology decisions for your business
-                        growth.
-                    </p>
-                    <div class="text-blue-600 font-medium">Starting at ₵125/hour</div>
-                </div>
-            </div>
         </div>
     </section>
 

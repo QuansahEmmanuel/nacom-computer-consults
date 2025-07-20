@@ -1,3 +1,66 @@
+const BASE_URLOne = "http://localhost/nacom-computer-consults/api/admin";
+
+// Fetch and display services
+const renderServices = async () => {
+  const servicesGrid = document.getElementById("services_grid");
+
+  try {
+    const res = await axios.get(`${BASE_URLOne}/services.php`);
+    const data = res.data;
+
+    // Clear existing content
+    servicesGrid.innerHTML = "";
+
+    if (data.status === "success" && Array.isArray(data.services)) {
+      if (data.services.length === 0) {
+        servicesGrid.innerHTML = `<p class="text-gray-500 col-span-3 text-center">No services available at the moment.</p>`;
+        return;
+      }
+
+      data.services.forEach((service, index) => {
+        const colors = [
+          { bg: "bg-blue-200", text: "text-blue-600" },
+          { bg: "bg-yellow-200", text: "text-yellow-600" },
+          { bg: "bg-green-200", text: "text-green-600" },
+          { bg: "bg-purple-200", text: "text-purple-600" },
+          { bg: "bg-red-200", text: "text-red-600" },
+          { bg: "bg-indigo-200", text: "text-indigo-600" },
+        ];
+        const color = colors[index % colors.length];
+
+        const card = `
+                    <div class="bg-white rounded-lg shadow-md p-6 border">
+                        <div class="flex items-center justify-start space-x-4 mb-4">
+                            <div class="w-6 h-6 ${
+                              color.bg
+                            } rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-circle ${color.text}"></i>
+                            </div>
+                            <h2 class="text-xl font-semibold">${
+                              service.name
+                            }</h2>
+                        </div>
+                        <p class="text-gray-600 mb-4">${service.description}</p>
+                        <div class="text-blue-600 font-medium">Starting at ₵${parseFloat(
+                          service.price
+                        ).toFixed(2)}</div>
+                    </div>
+                `;
+        servicesGrid.insertAdjacentHTML("beforeend", card);
+      });
+    } else {
+      servicesGrid.innerHTML = `<p class="text-red-500 col-span-3 text-center">Failed to load services.</p>`;
+    }
+  } catch (error) {
+    console.error("Error loading services:", error);
+    servicesGrid.innerHTML = `<p class="text-red-500 col-span-3 text-center">Something went wrong.</p>`;
+  }
+};
+
+// Auto-run
+renderServices();
+
+//.............................................................................
 const BASE_URL = "http://localhost/nacom-computer-consults/api";
 
 // Mobile menu toggle
