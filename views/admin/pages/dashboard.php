@@ -71,48 +71,10 @@
                             <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">STATUS</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="table-row border-b border-gray-100">
-                            <td class="py-3 px-4 text-sm text-gray-800">John Doe</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">IT Support</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">2024-01-15</td>
-                            <td class="py-3 px-4"><span
-                                    class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Confirmed</span>
-                            </td>
-                        </tr>
-                        <tr class="table-row border-b border-gray-100">
-                            <td class="py-3 px-4 text-sm text-gray-800">Jane Smith</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">Network Setup</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">2024-01-16</td>
-                            <td class="py-3 px-4"><span
-                                    class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Pending</span>
-                            </td>
-                        </tr>
-                        <tr class="table-row border-b border-gray-100">
-                            <td class="py-3 px-4 text-sm text-gray-800">Mike Johnson</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">Security Audit</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">2024-01-17</td>
-                            <td class="py-3 px-4"><span
-                                    class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Completed</span>
-                            </td>
-                        </tr>
-                        <tr class="table-row border-b border-gray-100">
-                            <td class="py-3 px-4 text-sm text-gray-800">Sarah Wilson</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">Data Recovery</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">2024-01-18</td>
-                            <td class="py-3 px-4"><span
-                                    class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">In
-                                    Progress</span></td>
-                        </tr>
-                        <tr class="table-row">
-                            <td class="py-3 px-4 text-sm text-gray-800">David Brown</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">Cloud Migration</td>
-                            <td class="py-3 px-4 text-sm text-gray-600">2024-01-19</td>
-                            <td class="py-3 px-4"><span
-                                    class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Confirmed</span>
-                            </td>
-                        </tr>
+                    <tbody id="recent_bookings_table_body">
+                        <!-- Will be populated by JS -->
                     </tbody>
+
                 </table>
             </div>
         </div>
@@ -170,6 +132,66 @@
 
 <script>
 const BASE_URL = "http://localhost/nacom-computer-consults/api/admin";
+
+
+const loadRecentBookings = async () => {
+    const tbody = document.getElementById("recent_bookings_table_body");
+
+    try {
+        const res = await axios.get(`${BASE_URL}/dashboard.php`);
+        const data = res.data;
+
+        if (data.status === "success" && Array.isArray(data.recent_bookings)) {
+            tbody.innerHTML = ""; // clear existing rows
+
+            data.recent_bookings.forEach(booking => {
+                const row = document.createElement("tr");
+                row.className = "table-row border-b border-gray-100";
+
+                // Choose badge color by status
+                let statusColor = "gray";
+                switch (booking.status.toLowerCase()) {
+                    case "confirmed":
+                        statusColor = "green";
+                        break;
+                    case "pending":
+                        statusColor = "yellow";
+                        break;
+                    case "completed":
+                        statusColor = "blue";
+                        break;
+                    case "in progress":
+                        statusColor = "orange";
+                        break;
+                }
+
+                row.innerHTML = `
+                    <td class="py-3 px-4 text-sm text-gray-800">${booking.customer}</td>
+                    <td class="py-3 px-4 text-sm text-gray-600">${booking.service}</td>
+                    <td class="py-3 px-4 text-sm text-gray-600">${booking.booking_date}</td>
+                    <td class="py-3 px-4">
+                        <span class="bg-${statusColor}-100 text-${statusColor}-800 px-2 py-1 rounded-full text-xs">
+                            ${booking.status}
+                        </span>
+                    </td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        } else {
+            tbody.innerHTML =
+                `<tr><td colspan="4" class="py-3 px-4 text-center text-sm text-gray-500">No bookings found.</td></tr>`;
+        }
+    } catch (error) {
+        console.error("Failed to load recent bookings:", error);
+        tbody.innerHTML =
+            `<tr><td colspan="4" class="py-3 px-4 text-center text-sm text-red-500">Error loading data.</td></tr>`;
+    }
+};
+
+// Run on page load
+loadRecentBookings();
+
 
 const getTotalBookinds = async () => {
     const totalBookingEl = document.getElementById("total_booking");
