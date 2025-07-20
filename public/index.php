@@ -183,14 +183,10 @@
                     <select id="bks_coustomer_service_name"
                         class="w-full border border-gray-300 p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">Select Service Type</option>
-                        <option value="IT Support & Troubleshooting">IT Support & Troubleshooting</option>
-                        <option value="Network Setup & Configuration">Network Setup & Configuration</option>
-                        <option value="Custom Software Development">Custom Software Development</option>
-                        <option value="Data Recovery Services">Data Recovery Services</option>
-                        <option value="System Maintenance">System Maintenance</option>
-                        <option value="IT Consultation">IT Consultation</option>
+                        <!-- Options will be added dynamically -->
                     </select>
                 </div>
+
                 <div class="md:col-span-2">
                     <label class="block font-semibold text-gray-800 mb-2">Preferred Date *</label>
                     <input type="date" id="bks_coustomer_date"

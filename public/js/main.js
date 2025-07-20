@@ -1,5 +1,31 @@
 const BASE_URLOne = "http://localhost/nacom-computer-consults/api/admin";
 
+const populateServiceOptions = async () => {
+  const select = document.getElementById("bks_coustomer_service_name");
+
+  try {
+    const res = await axios.get(`${BASE_URLOne}/services.php`);
+    const data = res.data;
+
+    if (data.status === "success" && Array.isArray(data.services)) {
+      select.innerHTML = '<option value="">Select Service Type</option>';
+
+      data.services.forEach((service) => {
+        const option = document.createElement("option");
+        option.value = service.id; // or service.name if you prefer
+        option.textContent = service.name;
+        select.appendChild(option);
+      });
+    } else {
+      console.error("No services found.");
+    }
+  } catch (error) {
+    console.error("Error loading services:", error);
+  }
+};
+
+populateServiceOptions();
+
 // Fetch and display services
 const renderServices = async () => {
   const servicesGrid = document.getElementById("services_grid");
