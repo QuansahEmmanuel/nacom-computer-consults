@@ -6,6 +6,7 @@ require_once('../../includes/db.php');
 $totalBookings = 0;
 $totalEnquiries = 0;
 $totalServices = 0;
+$recentBookings = [];
 
 // Get total bookings
 $bookingSql = "SELECT COUNT(*) as total FROM bookings";
@@ -28,12 +29,26 @@ if ($serviceResult && $row = $serviceResult->fetch_assoc()) {
     $totalServices = (int)$row['total'];
 }
 
-// Send JSON response
+// Get recent 5 bookings with correct column names
+$sql = "SELECT customer_name AS customer, service_name AS service, booking_date, booking_status AS status 
+        FROM bookings 
+        ORDER BY booking_date DESC 
+        LIMIT 5";
+$result = $conn->query($sql);
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $recentBookings[] = $row;
+    }
+}
+
+// ✅ Final combined JSON response
 echo json_encode([
     'status' => 'success',
     'total_bookings' => $totalBookings,
     'total_enquiries' => $totalEnquiries,
-    'total_service' => $totalServices
+    'total_service' => $totalServices,
+    'recent_bookings' => $recentBookings
 ]);
 
 $conn->close();
+?>
