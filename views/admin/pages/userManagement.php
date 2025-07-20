@@ -158,14 +158,15 @@
                     placeholder="Create a secure password" autocomplete="new-password" />
             </div>
 
-            <!-- Actions -->
-            <div class="modal-action mt-6 flex justify-end gap-2">
-                <button type="button" id="submitBtn" class="btn btn-primary">+ Add User</button>
-                <form method="dialog">
-                    <button class="btn btn-outline">Cancel</button>
-                </form>
-            </div>
+
         </form>
+        <!-- Actions -->
+        <div class="modal-action mt-6 flex justify-end gap-2">
+            <button type="button" onclick="addUser()" class="btn btn-primary">+ Add User</button>
+            <form method="dialog">
+                <button class="btn">Cancel</button>
+            </form>
+        </div>
     </div>
 </dialog>
 
@@ -253,15 +254,15 @@
                 <input type="password" id="edit_password" class="input input-bordered w-full"
                     placeholder="Create a secure password" autocomplete="new-password" />
             </div>
-
-            <!-- Actions -->
-            <div class="modal-action mt-6 flex justify-end gap-2">
-                <button type="button" onclick="editUser()" class="btn btn-primary"> Edit User</button>
-                <form method="dialog">
-                    <button class="btn btn-outline">X Cancel</button>
-                </form>
-            </div>
         </form>
+        <!-- Actions -->
+        <div class="modal-action mt-6 flex justify-end gap-2">
+            <button type="button" onclick="editUser()" class="btn btn-primary"> Edit User</button>
+            <form method="dialog">
+                <button class="btn">X Cancel</button>
+            </form>
+        </div>
+
     </div>
 </dialog>
 
@@ -447,7 +448,8 @@
 
     //..................................................
     // Add Users  
-    document.getElementById("submitBtn").addEventListener("click", async () => {
+
+    const addUser = async () => {
         const userName = document.getElementById("username").value.trim();
         const email = document.getElementById("email").value.trim();
         const role = document.getElementById("role").value.trim();
@@ -525,7 +527,7 @@
                 error_div.classList.add("hidden");
             }, 5000);
         }
-    });
+    }
 
     // Error Message plogin function 
     const errorMess = (messeage) => {
