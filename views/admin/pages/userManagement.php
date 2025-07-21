@@ -91,83 +91,84 @@
 
 <!-- Add User Modal -->
 <dialog id="my_modal_adduser" class="modal">
-  <div class="modal-box w-11/12 max-w-2xl p-6 rounded-2xl shadow-lg">
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-6">
-      <h3 class="text-2xl font-semibold text-gray-800">Add New User</h3>
-      <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost hover:bg-gray-200">✕</button>
-      </form>
+    <div class="modal-box w-11/12 max-w-2xl p-6 rounded-2xl shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-semibold text-gray-800">Add New User</h3>
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost hover:bg-gray-200">✕</button>
+            </form>
+        </div>
+
+        <!-- Alerts -->
+        <div class="space-y-2 mb-4">
+            <div id="error_div" class="hidden">
+                <div class="alert alert-error shadow-sm text-sm py-2 px-4">
+                    <span id="error_text"></span>
+                </div>
+            </div>
+            <div id="success_div" class="hidden">
+                <div class="alert alert-success shadow-sm text-sm py-2 px-4">
+                    <span id="success_text"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="userForm" class="space-y-5">
+            <!-- Username -->
+            <div>
+                <label class="label font-medium text-sm text-gray-700" for="username">Username</label>
+                <input type="text" id="username" name="username" class="input input-bordered w-full"
+                    placeholder="Enter username" autocomplete="username" />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="label font-medium text-sm text-gray-700" for="email">Email</label>
+                <input type="email" id="email" name="email" class="input input-bordered w-full"
+                    placeholder="Enter email" autocomplete="email" />
+            </div>
+
+            <!-- Role & Status -->
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="w-full">
+                    <label class="label font-medium text-sm text-gray-700" for="role">Role</label>
+                    <select id="role" name="role" class="select select-bordered w-full">
+                        <option value="">Select Role</option>
+                        <option value="admin">Administrator</option>
+                        <option value="support">Support Agent</option>
+
+                    </select>
+                </div>
+
+                <div class="w-full">
+                    <label class="label font-medium text-sm text-gray-700" for="status">Status</label>
+                    <select id="status" name="status" class="select select-bordered w-full">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label class="label font-medium text-sm text-gray-700" for="password">Password</label>
+                <input type="password" id="password" name="password" class="input input-bordered w-full"
+                    placeholder="Create a secure password" autocomplete="new-password" />
+            </div>
+
+
+        </form>
+        <!-- Actions -->
+        <div class="modal-action mt-6 flex justify-end gap-2">
+            <button type="button" onclick="addUser()" class="btn btn-primary">+ Add User</button>
+            <form method="dialog">
+                <button class="btn">Cancel</button>
+            </form>
+        </div>
     </div>
-
-    <!-- Alerts -->
-    <div class="space-y-2 mb-4">
-      <div id="error_div" class="hidden">
-        <div class="alert alert-error shadow-sm text-sm py-2 px-4">
-          <span id="error_text"></span>
-        </div>
-      </div>
-      <div id="success_div" class="hidden">
-        <div class="alert alert-success shadow-sm text-sm py-2 px-4">
-          <span id="success_text"></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Form -->
-    <form id="userForm" class="space-y-5">
-      <!-- Username -->
-      <div class="flex flex-col">
-        <label class="text-sm font-medium text-gray-700 mb-1" for="username">Username</label>
-        <input type="text" id="username" name="username" class="input input-bordered w-full"
-          placeholder="Enter username" autocomplete="username" />
-      </div>
-
-      <!-- Email -->
-      <div class="flex flex-col">
-        <label class="text-sm font-medium text-gray-700 mb-1" for="email">Email</label>
-        <input type="email" id="email" name="email" class="input input-bordered w-full"
-          placeholder="Enter email" autocomplete="email" />
-      </div>
-
-      <!-- Role & Status -->
-      <div class="flex flex-col md:flex-row gap-4">
-        <div class="w-full flex flex-col">
-          <label class="text-sm font-medium text-gray-700 mb-1" for="role">Role</label>
-          <select id="role" name="role" class="select select-bordered w-full">
-            <option value="">Select Role</option>
-            <option value="admin">Administrator</option>
-            <option value="support">Support Agent</option>
-          </select>
-        </div>
-
-        <div class="w-full flex flex-col">
-          <label class="text-sm font-medium text-gray-700 mb-1" for="status">Status</label>
-          <select id="status" name="status" class="select select-bordered w-full">
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Password -->
-      <div class="flex flex-col">
-        <label class="text-sm font-medium text-gray-700 mb-1" for="password">Password</label>
-        <input type="password" id="password" name="password" class="input input-borderedl w-full"
-          placeholder="Create a secure password" autocomplete="new-password" />
-      </div>
-    </form>
-
-    <!-- Actions -->
-    <div class="modal-action mt-6 flex justify-end gap-2">
-      <button type="button" onclick="addUser()" class="btn btn-primary">+ Add User</button>
-      <form method="dialog">
-        <button class="btn">Cancel</button>
-      </form>
-    </div>
-  </div>
 </dialog>
-
 
 
 <!-- Delete Modal  -->
@@ -241,7 +242,6 @@
                 <div class="w-full">
                     <label class="label font-medium text-sm text-gray-700" for="edit_status">Status</label>
                     <select id="edit_status" class="select select-bordered w-full">
-                        <option>Select Status</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
