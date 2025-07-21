@@ -1,59 +1,63 @@
 <!-- Dashboard Content -->
 <div id="dashboard-content" class="page-content">
     <!-- Stats Cards -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    <div class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-blue-100 hover:-translate-y-1">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-600 text-sm">Total Bookings</p>
-                <p class="text-3xl font-bold text-gray-800" id="total_booking"></p>
-                <p class="text-green-600 text-sm">+12% from last month</p>
-            </div>
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-calendar-check text-blue-600 text-xl"></i>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div
+            class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-blue-100 hover:-translate-y-1">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-600 text-sm">Total Bookings</p>
+                    <p class="text-3xl font-bold text-gray-800" id="total_booking"></p>
+                    <p class="text-green-600 text-sm">+12% from last month</p>
+                </div>
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-calendar-check text-blue-600 text-xl"></i>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-green-100 hover:-translate-y-1">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-600 text-sm">Enquiries</p>
-                <p class="text-3xl font-bold text-gray-800" id="total_enquiries"></p>
-                <p class="text-green-600 text-sm">+8% from last month</p>
-            </div>
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-question-circle text-green-600 text-xl"></i>
+        <div
+            class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-green-100 hover:-translate-y-1">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-600 text-sm">Enquiries</p>
+                    <p class="text-3xl font-bold text-gray-800" id="total_enquiries"></p>
+                    <p class="text-green-600 text-sm">+8% from last month</p>
+                </div>
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-question-circle text-green-600 text-xl"></i>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-purple-100 hover:-translate-y-1 ">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-600 text-sm">Services</p>
-                <p class="text-3xl font-bold text-gray-800" id="total_service"></p>
-                <p class="text-gray-600 text-sm">0% from last month</p>
-            </div>
-            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-cog text-purple-600 text-xl"></i>
+        <div
+            class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-purple-100 hover:-translate-y-1 ">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-600 text-sm">Services</p>
+                    <p class="text-3xl font-bold text-gray-800" id="total_service"></p>
+                    <p class="text-gray-600 text-sm">0% from last month</p>
+                </div>
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-cog text-purple-600 text-xl"></i>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-orange-100 hover:-translate-y-1">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-gray-600 text-sm">Revenue</p>
-                <p class="text-3xl font-bold text-gray-800">₵2.4M</p>
-                <p class="text-green-600 text-sm">+15% from last month</p>
-            </div>
-            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-dollar-sign text-orange-600 text-xl"></i>
+        <div
+            class="stat-card border border-gray-200 rounded-lg p-4 transition transform hover:bg-orange-100 hover:-translate-y-1">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-600 text-sm">Revenue</p>
+                    <p class="text-3xl font-bold text-gray-800">₵2.4M</p>
+                    <p class="text-green-600 text-sm">+15% from last month</p>
+                </div>
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-dollar-sign text-orange-600 text-xl"></i>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 

@@ -269,92 +269,93 @@
 
 
 <script>
-    //Base Url
-    const BASE_URL = "http://localhost/nacom-computer-consults/api/auth"
+//Base Url
+const BASE_URL = "http://localhost/nacom-computer-consults/api/auth"
 
-    // Total User Fuctionality 
-    const totalUsers = async () => {
-        try {
-            const res = await axios.get(`${BASE_URL}/viewUser.php`);
-            const data = res.data;
+// Total User Fuctionality 
+const totalUsers = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/viewUser.php`);
+        const data = res.data;
 
-            if (data.status === "success") {
-                const count = data.data.length;
-                document.getElementById("total_users").innerHTML = count;
-            } else {
-                console.error("Failed to fetch user count.");
-                document.getElementById("total_users").innerHTML = 0;
-            }
-        } catch (error) {
-            console.error("Error fetching users:", error);
+        if (data.status === "success") {
+            const count = data.data.length;
+            document.getElementById("total_users").innerHTML = count;
+        } else {
+            console.error("Failed to fetch user count.");
             document.getElementById("total_users").innerHTML = 0;
         }
-    };
-    totalUsers();
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        document.getElementById("total_users").innerHTML = 0;
+    }
+};
+totalUsers();
 
-    // Admin User Functionality
-    const adminUsers = async () => {
-        try {
-            const res = await axios.get(`${BASE_URL}/viewUser.php`);
-            const data = res.data;
+// Admin User Functionality
+const adminUsers = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/viewUser.php`);
+        const data = res.data;
 
-            if (data.status === "success") {
-                // Filter users with role === "admin" and count them
-                const adminCount = data.data.filter(user => user.role === "admin").length;
-                document.getElementById("admin_users").innerHTML = adminCount;
-            } else {
-                console.error("Failed to fetch user count.");
-                document.getElementById("admin_users").innerHTML = 0;
-            }
-        } catch (error) {
-            console.error("Error fetching users:", error);
+        if (data.status === "success") {
+            // Filter users with role === "admin" and count them
+            const adminCount = data.data.filter(user => user.role === "admin").length;
+            document.getElementById("admin_users").innerHTML = adminCount;
+        } else {
+            console.error("Failed to fetch user count.");
             document.getElementById("admin_users").innerHTML = 0;
         }
-    };
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        document.getElementById("admin_users").innerHTML = 0;
+    }
+};
 
-    adminUsers(); // Run on page load
+adminUsers(); // Run on page load
 
 
-    // Support User Functionality
-    const supportUsers = async () => {
-        try {
-            const res = await axios.get(`${BASE_URL}/viewUser.php`);
-            const data = res.data;
+// Support User Functionality
+const supportUsers = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/viewUser.php`);
+        const data = res.data;
 
-            if (data.status === "success") {
-                // Count how many users have role = "support"
-                const supportCount = data.data.filter(user => user.role === "support").length;
-                document.getElementById("support_users").innerHTML = supportCount;
-            } else {
-                console.error("Failed to fetch support user count.");
-                document.getElementById("support_users").innerHTML = 0;
-            }
-        } catch (error) {
-            console.error("Error fetching support users:", error);
+        if (data.status === "success") {
+            // Count how many users have role = "support"
+            const supportCount = data.data.filter(user => user.role === "support").length;
+            document.getElementById("support_users").innerHTML = supportCount;
+        } else {
+            console.error("Failed to fetch support user count.");
             document.getElementById("support_users").innerHTML = 0;
         }
-    };
+    } catch (error) {
+        console.error("Error fetching support users:", error);
+        document.getElementById("support_users").innerHTML = 0;
+    }
+};
 
-    supportUsers(); // Run it on page load
+supportUsers(); // Run it on page load
 
-    //...........................................................................
-    // Get All Users from Backend 
+//...........................................................................
+// Get All Users from Backend 
 
-    let allUsers = []; // Store all users globally
+let allUsers = []; // Store all users globally
 
-    // Render Users Function (called on initial load and filter)
-    const renderUsers = (users) => {
-        const tableBody = document.getElementById("usersTableBody");
-        tableBody.innerHTML = ""; // Clear previous content
+// Render Users Function (called on initial load and filter)
+const renderUsers = (users) => {
+    const tableBody = document.getElementById("usersTableBody");
+    tableBody.innerHTML = ""; // Clear previous content
 
-        if (users.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-red-500">No users match your filters</td></tr>`;
-            return;
-        }
+    if (users.length === 0) {
+        tableBody.innerHTML =
+            `<tr><td colspan="7" class="text-center text-red-500">No users match your filters</td></tr>`;
+        return;
+    }
 
-        users.forEach((user, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
+    users.forEach((user, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
             <td>
                 <div class="p-3">
                     <span class="text-xs">${index + 1}</span>
@@ -386,282 +387,292 @@
                 </div>
             </td>
         `;
-            tableBody.appendChild(row);
-        });
-    };
+        tableBody.appendChild(row);
+    });
+};
 
-    // Fetch all users
-    const viewUsers = async () => {
-        try {
-            const res = await axios.get(`${BASE_URL}/viewUser.php`);
-            const { status, data } = res.data;
+// Fetch all users
+const viewUsers = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/viewUser.php`);
+        const {
+            status,
+            data
+        } = res.data;
 
-            if (status === "success") {
-                allUsers = data;
-                renderUsers(allUsers);
-            } else {
-                document.getElementById("usersTableBody").innerHTML =
-                    `<tr><td colspan="7" class="text-center text-red-500">No users found</td></tr>`;
-            }
-        } catch (error) {
-            console.error("Error loading users:", error);
-            document.getElementById("usersTableBody").innerHTML =
-                `<tr><td colspan="7" class="text-center text-red-500">Server error</td></tr>`;
-        }
-    };
-
-    // Filter logic
-    const filterUsers = () => {
-        const searchText = document.getElementById("searchInput").value.toLowerCase();
-        const role = document.getElementById("roleFilter").value;
-        const status = document.getElementById("statusFilter").value;
-
-        const filtered = allUsers.filter(user => {
-            const matchSearch = user.username.toLowerCase().includes(searchText) ||
-                user.email.toLowerCase().includes(searchText);
-            const matchRole = role ? user.role === role : true;
-            const matchStatus = status ? user.status === status : true;
-
-            return matchSearch && matchRole && matchStatus;
-        });
-
-        renderUsers(filtered);
-    };
-
-    // Clear filters
-    const clearFilters = () => {
-        document.getElementById("searchInput").value = "";
-        document.getElementById("roleFilter").value = "";
-        document.getElementById("statusFilter").value = "";
-        renderUsers(allUsers);
-    };
-
-    // Event listeners
-    document.getElementById("searchInput").addEventListener("input", filterUsers);
-    document.getElementById("roleFilter").addEventListener("change", filterUsers);
-    document.getElementById("statusFilter").addEventListener("change", filterUsers);
-    document.querySelector(".btn.btn-outline").addEventListener("click", clearFilters);
-
-    // Load users initially
-    viewUsers();
-
-
-    //..................................................
-    // Add Users  
-
-    const addUser = async () => {
-        const userName = document.getElementById("username").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const role = document.getElementById("role").value.trim();
-        const status = document.getElementById("status").value.trim();
-        const password = document.getElementById("password").value.trim();
-
-        const error_div = document.getElementById("error_div");
-        const error_text = document.getElementById("error_text");
-        const success_div = document.getElementById("success_div");
-        const success_text = document.getElementById("success_text");
-
-        // Reset messages
-        error_div.classList.add("hidden");
-        success_div.classList.add("hidden");
-
-        // Validation
-        if (!userName || !email || !role || !status || !password) {
-            error_text.textContent = "All fields are required.";
-            error_div.classList.remove("hidden");
-
-            // Auto-hide error after 5 seconds
-            setTimeout(() => {
-                error_div.classList.add("hidden");
-            }, 5000);
-
-            return;
-        }
-
-        try {
-            const res = await axios.post(`${BASE_URL}/addUser.php`, {
-                username: userName,
-                email: email,
-                role: role,
-                status: status,
-                password: password
-            });
-
-            const data = res.data;
-
-            if (data.status === "success") {
-                success_text.textContent = data.message || "User added successfully!";
-                success_div.classList.remove("hidden");
-
-                // Auto-hide success after 5 seconds
-                setTimeout(() => {
-                    success_div.classList.add("hidden");
-                }, 5000);
-
-                // Optionally, reset form fields
-                document.getElementById("username").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("role").value = "";
-                document.getElementById("status").value = "";
-                document.getElementById("password").value = "";
-
-                // Refresh table (if needed)
-                if (typeof viewUsers === "function") viewUsers(); totalUsers(); adminUsers(); supportUsers();
-            } else {
-                error_text.textContent = data.message || "Failed to add user.";
-                error_div.classList.remove("hidden");
-
-                // Auto-hide error after 5 seconds
-                setTimeout(() => {
-                    error_div.classList.add("hidden");
-                }, 5000);
-            }
-
-        } catch (err) {
-            console.error(err);
-            error_text.textContent = "Server error. Please try again.";
-            error_div.classList.remove("hidden");
-
-            // Auto-hide error after 5 seconds
-            setTimeout(() => {
-                error_div.classList.add("hidden");
-            }, 5000);
-        }
-    }
-
-    // Error Message plogin function 
-    const errorMess = (messeage) => {
-        iziToast.error({
-            title: "Error",
-            message: messeage,
-            position: "topRight", // Matches your div class
-        });
-    };
-    const successMess = (message) => {
-        iziToast.success({
-            title: "Success",
-            message: message,
-            position: "topRight", // Matches your div class
-        });
-    };
-    //...................................................................
-
-    // Delete User 
-
-    // opens and assigns id to to delete user modal
-    const openDeleteModal = (id) => {
-        const ID = document.getElementById("delete_user_id").value = id;
-        document.getElementById("my_modal_delete").showModal();
-        // console.log(ID);
-    }
-
-    // delets the user 
-    const deleteUser = async () => {
-        const userId = document.getElementById("delete_user_id").value;
-
-        try {
-            const res = await axios.post(`${BASE_URL}/deleteUser.php`, {
-                user_id: userId
-            });
-
-            const data = res.data;
-
-            if (data.status === "success") {
-                viewUsers(); totalUsers(); adminUsers(); supportUsers();
-
-                document.getElementById("my_modal_delete").close();
-                successMess(data.message) || "User deleted successfully.";
-                // Refresh user list
-
-            } else {
-                errorMess(data.message) || "Failed to delete user.";
-
-            }
-
-        } catch (err) {
-            console.error(err);
-
-            error_text.textContent = "Server error. Please try again.";
-            error_div.classList.remove("hidden");
-
-            setTimeout(() => {
-                error_div.classList.add("hidden");
-            }, 3000);
-        }
-    }
-
-    // opens and assigns id to to edit user modal
-    const openEditModal = (id, user_name, user_email, user_role, user_status, user_password) => {
-
-        const user_id = document.getElementById("edit_user_id").value = id;
-        const username = document.getElementById("edit_username").value = user_name;
-        const email = document.getElementById("edit_email").value = user_email;
-        const role = document.getElementById("edit_role").value = user_role;
-        const status = document.getElementById("edit_status").value = user_status;
-        const password = document.getElementById("edit_password").value = user_password;
-
-        document.getElementById("my_modal_edit_user").showModal();
-
-    }
-
-    //Edit user 
-    const editUser = async () => {
-        const user_id = document.getElementById("edit_user_id").value.trim();
-        const username = document.getElementById("edit_username").value.trim();
-        const email = document.getElementById("edit_email").value.trim();
-        const role = document.getElementById("edit_role").value.trim();
-        const status = document.getElementById("edit_status").value.trim();
-        const password = document.getElementById("edit_password").value.trim();
-
-
-        // error message 
-        const error_div = document.getElementById("edit_error_div");
-        const error_text = document.getElementById("edit_error_text");
-
-        // Reset messages
-        error_div.classList.add("hidden");
-
-
-
-        // Optional: basic validation
-        if (!username || !email || !role || !status) {
-            error_text.innerHTML = "Please fill in all required fields.", "error"
-            error_div.classList.remove("hidden");
-            return
+        if (status === "success") {
+            allUsers = data;
+            renderUsers(allUsers);
         } else {
-            // Reset messages
+            document.getElementById("usersTableBody").innerHTML =
+                `<tr><td colspan="7" class="text-center text-red-500">No users found</td></tr>`;
+        }
+    } catch (error) {
+        console.error("Error loading users:", error);
+        document.getElementById("usersTableBody").innerHTML =
+            `<tr><td colspan="7" class="text-center text-red-500">Server error</td></tr>`;
+    }
+};
+
+// Filter logic
+const filterUsers = () => {
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+    const role = document.getElementById("roleFilter").value;
+    const status = document.getElementById("statusFilter").value;
+
+    const filtered = allUsers.filter(user => {
+        const matchSearch = user.username.toLowerCase().includes(searchText) ||
+            user.email.toLowerCase().includes(searchText);
+        const matchRole = role ? user.role === role : true;
+        const matchStatus = status ? user.status === status : true;
+
+        return matchSearch && matchRole && matchStatus;
+    });
+
+    renderUsers(filtered);
+};
+
+// Clear filters
+const clearFilters = () => {
+    document.getElementById("searchInput").value = "";
+    document.getElementById("roleFilter").value = "";
+    document.getElementById("statusFilter").value = "";
+    renderUsers(allUsers);
+};
+
+// Event listeners
+document.getElementById("searchInput").addEventListener("input", filterUsers);
+document.getElementById("roleFilter").addEventListener("change", filterUsers);
+document.getElementById("statusFilter").addEventListener("change", filterUsers);
+document.querySelector(".btn.btn-outline").addEventListener("click", clearFilters);
+
+// Load users initially
+viewUsers();
+
+
+//..................................................
+// Add Users  
+
+const addUser = async () => {
+    const userName = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const status = document.getElementById("status").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const error_div = document.getElementById("error_div");
+    const error_text = document.getElementById("error_text");
+    const success_div = document.getElementById("success_div");
+    const success_text = document.getElementById("success_text");
+
+    // Reset messages
+    error_div.classList.add("hidden");
+    success_div.classList.add("hidden");
+
+    // Validation
+    if (!userName || !email || !role || !status || !password) {
+        error_text.textContent = "All fields are required.";
+        error_div.classList.remove("hidden");
+
+        // Auto-hide error after 5 seconds
+        setTimeout(() => {
             error_div.classList.add("hidden");
+        }, 5000);
+
+        return;
+    }
+
+    try {
+        const res = await axios.post(`${BASE_URL}/addUser.php`, {
+            username: userName,
+            email: email,
+            role: role,
+            status: status,
+            password: password
+        });
+
+        const data = res.data;
+
+        if (data.status === "success") {
+            success_text.textContent = data.message || "User added successfully!";
+            success_div.classList.remove("hidden");
+
+            // Auto-hide success after 5 seconds
+            setTimeout(() => {
+                success_div.classList.add("hidden");
+            }, 5000);
+
+            // Optionally, reset form fields
+            document.getElementById("username").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("role").value = "";
+            document.getElementById("status").value = "";
+            document.getElementById("password").value = "";
+
+            // Refresh table (if needed)
+            if (typeof viewUsers === "function") viewUsers();
+            totalUsers();
+            adminUsers();
+            supportUsers();
+        } else {
+            error_text.textContent = data.message || "Failed to add user.";
+            error_div.classList.remove("hidden");
+
+            // Auto-hide error after 5 seconds
+            setTimeout(() => {
+                error_div.classList.add("hidden");
+            }, 5000);
+        }
+
+    } catch (err) {
+        console.error(err);
+        error_text.textContent = "Server error. Please try again.";
+        error_div.classList.remove("hidden");
+
+        // Auto-hide error after 5 seconds
+        setTimeout(() => {
+            error_div.classList.add("hidden");
+        }, 5000);
+    }
+}
+
+// Error Message plogin function 
+const errorMess = (messeage) => {
+    iziToast.error({
+        title: "Error",
+        message: messeage,
+        position: "topRight", // Matches your div class
+    });
+};
+const successMess = (message) => {
+    iziToast.success({
+        title: "Success",
+        message: message,
+        position: "topRight", // Matches your div class
+    });
+};
+//...................................................................
+
+// Delete User 
+
+// opens and assigns id to to delete user modal
+const openDeleteModal = (id) => {
+    const ID = document.getElementById("delete_user_id").value = id;
+    document.getElementById("my_modal_delete").showModal();
+    // console.log(ID);
+}
+
+// delets the user 
+const deleteUser = async () => {
+    const userId = document.getElementById("delete_user_id").value;
+
+    try {
+        const res = await axios.post(`${BASE_URL}/deleteUser.php`, {
+            user_id: userId
+        });
+
+        const data = res.data;
+
+        if (data.status === "success") {
+            viewUsers();
+            totalUsers();
+            adminUsers();
+            supportUsers();
+
+            document.getElementById("my_modal_delete").close();
+            successMess(data.message) || "User deleted successfully.";
+            // Refresh user list
+
+        } else {
+            errorMess(data.message) || "Failed to delete user.";
 
         }
 
-        try {
-            const res = await axios.post(`${BASE_URL}/editUser.php`, {
-                user_id,
-                username,
-                email,
-                role,
-                status,
-                password
-            });
+    } catch (err) {
+        console.error(err);
 
-            const data = res.data;
+        error_text.textContent = "Server error. Please try again.";
+        error_div.classList.remove("hidden");
 
-            if (data.status === "success") {
-                error_div.classList.add("hidden");
-                viewUsers(); totalUsers(); adminUsers(); supportUsers();
-                successMess(data.message) || "User updated successfully.";
-                document.getElementById("my_modal_edit_user").close();
+        setTimeout(() => {
+            error_div.classList.add("hidden");
+        }, 3000);
+    }
+}
 
-            } else {
-                error_text.innerHTML = "Failed to update user.", "error"
-                error_div.classList.remove("hidden");
-            }
-        } catch (err) {
-            console.error(err);
-            error_text.innerHTML = "Server error while updating user.", "error"
+// opens and assigns id to to edit user modal
+const openEditModal = (id, user_name, user_email, user_role, user_status, user_password) => {
+
+    const user_id = document.getElementById("edit_user_id").value = id;
+    const username = document.getElementById("edit_username").value = user_name;
+    const email = document.getElementById("edit_email").value = user_email;
+    const role = document.getElementById("edit_role").value = user_role;
+    const status = document.getElementById("edit_status").value = user_status;
+    const password = document.getElementById("edit_password").value = user_password;
+
+    document.getElementById("my_modal_edit_user").showModal();
+
+}
+
+//Edit user 
+const editUser = async () => {
+    const user_id = document.getElementById("edit_user_id").value.trim();
+    const username = document.getElementById("edit_username").value.trim();
+    const email = document.getElementById("edit_email").value.trim();
+    const role = document.getElementById("edit_role").value.trim();
+    const status = document.getElementById("edit_status").value.trim();
+    const password = document.getElementById("edit_password").value.trim();
+
+
+    // error message 
+    const error_div = document.getElementById("edit_error_div");
+    const error_text = document.getElementById("edit_error_text");
+
+    // Reset messages
+    error_div.classList.add("hidden");
+
+
+
+    // Optional: basic validation
+    if (!username || !email || !role || !status) {
+        error_text.innerHTML = "Please fill in all required fields.", "error"
+        error_div.classList.remove("hidden");
+        return
+    } else {
+        // Reset messages
+        error_div.classList.add("hidden");
+
+    }
+
+    try {
+        const res = await axios.post(`${BASE_URL}/editUser.php`, {
+            user_id,
+            username,
+            email,
+            role,
+            status,
+            password
+        });
+
+        const data = res.data;
+
+        if (data.status === "success") {
+            error_div.classList.add("hidden");
+            viewUsers();
+            totalUsers();
+            adminUsers();
+            supportUsers();
+            successMess(data.message) || "User updated successfully.";
+            document.getElementById("my_modal_edit_user").close();
+
+        } else {
+            error_text.innerHTML = "Failed to update user.", "error"
             error_div.classList.remove("hidden");
         }
-    };
-
-
+    } catch (err) {
+        console.error(err);
+        error_text.innerHTML = "Server error while updating user.", "error"
+        error_div.classList.remove("hidden");
+    }
+};
 </script>
