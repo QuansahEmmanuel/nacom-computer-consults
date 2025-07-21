@@ -4,131 +4,10 @@
     <h2 class="text-lg font-semibold text-gray-900">Available Services</h2>
   </div>
   <div class="p-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+   <div id="service_container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <!-- Single Service Card Template -->
-      <!-- Repeat this block for each service -->
-      <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
-        onclick="openServiceModal(
-          'IT Support & Troubleshooting',
-          'fa-solid fa-screwdriver-wrench',
-          'Comprehensive system security checks and troubleshooting services.',
-          'GHS 150',
-          '1 hour',
-          'Weekdays & Weekends',
-          'text-blue-600'
-        )">
-        <div class="flex items-center space-x-3 mb-3">
-          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-screwdriver-wrench text-blue-600 text-lg"></i>
-          </div>
-          <h3 class="font-medium text-gray-900 text-lg">IT Support & Troubleshooting</h3>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Comprehensive system security checks and troubleshooting services.</p>
-        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
-      </div>
-
-      <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
-        onclick="openServiceModal(
-          'Network Setup & Configuration',
-          'fa-solid fa-network-wired',
-          'Professional network installation, configuration, and secure setup for businesses.',
-          'GHS 200',
-          '2 hours',
-          'Weekdays & Weekends',
-          'text-yellow-600'
-        )">
-        <div class="flex items-center space-x-3 mb-3">
-          <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-network-wired text-yellow-600 text-lg"></i>
-          </div>
-          <h3 class="font-medium text-gray-900 text-lg">Network Setup & Configuration</h3>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Professional network installation, configuration, and secure setup for businesses.</p>
-        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
-      </div>
-
-      <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
-        onclick="openServiceModal(
-          'Data Recovery Services',
-          'fa-solid fa-box-open',
-          'Professional data backup and recovery services to protect your valuable business information.',
-          'GHS 150',
-          '1 hour',
-          'Weekdays & Weekends',
-          'text-purple-600'
-        )">
-        <div class="flex items-center space-x-3 mb-3">
-          <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-box-open text-purple-600 text-lg"></i>
-          </div>
-          <h3 class="font-medium text-gray-900 text-lg">Data Recovery Services</h3>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Professional data backup and recovery services to protect your valuable business information.</p>
-        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
-      </div>
-
-      <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
-        onclick="openServiceModal(
-          'Custom Software Development',
-          'fa-solid fa-code',
-          'Bespoke software solutions tailored to your business needs, from web to desktop applications.',
-          'GHS 100',
-          '1 hour',
-          'Weekdays & Weekends',
-          'text-green-600'
-        )">
-        <div class="flex items-center space-x-3 mb-3">
-          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-code text-green-600 text-lg"></i>
-          </div>
-          <h3 class="font-medium text-gray-900 text-lg">Custom Software Development</h3>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Bespoke software solutions tailored to your business needs.</p>
-        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
-      </div>
-
-      <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
-        onclick="openServiceModal(
-          'System Maintenance',
-          'fa-solid fa-heart-pulse',
-          'Routine maintenance to ensure system performance and data security.',
-          'GHS 75',
-          '1 hour',
-          'Weekdays & Weekends',
-          'text-red-600'
-        )">
-        <div class="flex items-center space-x-3 mb-3">
-          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-heart-pulse text-red-600 text-lg"></i>
-          </div>
-          <h3 class="font-medium text-gray-900 text-lg">System Maintenance</h3>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Routine maintenance to ensure system performance and data security.</p>
-        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
-      </div>
-
-      <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
-        onclick="openServiceModal(
-          'IT Consultation',
-          'fa-solid fa-magnifying-glass',
-          'Expert advice on IT infrastructure and technology investments.',
-          'GHS 150',
-          '1 hour',
-          'Weekdays & Weekends',
-          'text-indigo-600'
-        )">
-        <div class="flex items-center space-x-3 mb-3">
-          <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-magnifying-glass text-indigo-600 text-lg"></i>
-          </div>
-          <h3 class="font-medium text-gray-900 text-lg">IT Consultation</h3>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Expert advice on IT infrastructure and technology investments.</p>
-        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
-      </div>
-
-    </div>
+   </div>
+    
   </div>
 </div>
 
@@ -231,4 +110,55 @@
   function closeServiceModal() {
     document.getElementById('serviceModal').classList.add('hidden');
   }
+
+
+
+
+  const fetchServiceData = async () => {
+    try {
+      const response = await axios.get('http://localhost/nacom-computer-consults/api/support/services.php');
+     
+      const services = await response.data;
+
+      const data = services.data;
+
+      const serviceContainer = document.getElementById('service_container');
+      serviceContainer.innerHTML = ''; 
+      const display = (service)=>{
+        return`
+        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
+        onclick="openServiceModal(
+          '${service.name}',
+          'fa-solid fa-screwdriver-wrench',
+          '${service.description}',
+          '${service.price}',
+          '1 hour',
+          'Weekdays & Weekends',
+          'text-blue-600'
+        )">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-screwdriver-wrench text-blue-600 text-lg"></i>
+          </div>
+          <h3 class="font-medium text-gray-900 text-lg">${service.name}</h3>
+        </div>
+        <p class="text-sm text-gray-600 mb-4">${service.description}</p>
+        <button class="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200">View Details</button>
+      </div>
+        `
+      }// Clear existing content
+
+      data.map(service => {
+         serviceContainer.innerHTML += display(service);
+      });
+
+
+     
+      
+    } catch (error) {
+      console.error('Error fetching service data:', error);
+    }
+  };
+
+  fetchServiceData();
 </script>
