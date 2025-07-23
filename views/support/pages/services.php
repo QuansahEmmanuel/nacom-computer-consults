@@ -138,7 +138,7 @@
         )">
         <div class="flex items-center space-x-3 mb-3">
           <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-screwdriver-wrench text-blue-600 text-lg"></i>
+            <i class="fas fa-cogs text-blue-600 text-lg"></i>
           </div>
           <h3 class="font-medium text-gray-900 text-lg">${service.name}</h3>
         </div>
