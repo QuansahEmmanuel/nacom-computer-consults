@@ -129,7 +129,7 @@
         <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer"
         onclick="openServiceModal(
           '${service.name}',
-          'fa-solid fa-screwdriver-wrench',
+          'fas fa-cogs text-green-600',
           '${service.description}',
           '${service.price}',
           '1 hour',
