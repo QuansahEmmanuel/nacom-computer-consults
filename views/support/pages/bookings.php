@@ -114,15 +114,29 @@
       </table>
 
       <!-- Pagination -->
-      <div class="mt-6 flex justify-center">
-        <nav class="inline-flex shadow-sm rounded-md" aria-label="Pagination">
-          <button class="px-3 py-1 bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">«</button>
-          <button class="px-3 py-1 bg-blue-500 text-white border border-blue-500">1</button>
-          <button class="px-3 py-1 bg-white border border-gray-300 hover:bg-gray-100">2</button>
-          <button class="px-3 py-1 bg-white border border-gray-300 hover:bg-gray-100">3</button>
-          <button class="px-3 py-1 bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">»</button>
-        </nav>
-      </div>
-    </div>
-  </div>
+<div class="mt-6 flex justify-center">
+  <nav class="inline-flex shadow-sm rounded-md" aria-label="Pagination" id="paginationNav">
+    <button class="pagination-btn px-3 py-1 bg-blue-500 text-white border border-blue-500">1</button>
+    <button class="pagination-btn px-3 py-1 bg-white border border-gray-300 hover:bg-gray-100">2</button>
+    <button class="pagination-btn px-3 py-1 bg-white border border-gray-300 hover:bg-gray-100">3</button>
+    <button class="pagination-btn px-3 py-1 bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">»</button>
+  </nav>
 </div>
+
+<script>
+  const buttons = document.querySelectorAll('.pagination-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function () {
+      // Remove active class from all
+      buttons.forEach(b => {
+        b.classList.remove('bg-blue-500', 'text-white', 'border-blue-500');
+        b.classList.add('bg-white', 'text-gray-700', 'border-gray-300');
+      });
+
+      // Add active class to clicked
+      this.classList.remove('bg-white', 'text-gray-700', 'border-gray-300');
+      this.classList.add('bg-blue-500', 'text-white', 'border-blue-500');
+    });
+  });
+</script>

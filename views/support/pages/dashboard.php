@@ -67,7 +67,7 @@
         <!-- Dashboard Stats Section -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Stat Card 1 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow transition-shadow hover:-translate-y-1">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Upcoming Bookings</p>
@@ -80,7 +80,7 @@
             </div>
 
             <!-- Stat Card 2 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow transition-shadow hover:-translate-y-1">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Unresolved Enquiries</p>
@@ -93,7 +93,7 @@
             </div>
 
             <!-- Stat Card 3 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow transition-shadow">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow transition-shadow hover:-translate-y-1">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Active Services</p>
