@@ -69,6 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         case 'admin':
             header("Location: ../../views/admin/index.php");
             break;
+        case 'manager':
+            header("Location: ../../views/manager/index.php");
+            break;
         case 'support':
             header("Location: ../../views/support/index.php");
             break;

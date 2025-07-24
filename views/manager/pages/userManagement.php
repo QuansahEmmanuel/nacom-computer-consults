@@ -15,7 +15,7 @@
 <div class="container mx-auto mt-8">
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
+        <!-- <div class="stat bg-base-100 shadow-lg rounded-lg">
             <div class="stat-figure text-primary">
                 <i data-lucide="users" class="w-8 h-8"></i>
             </div>
@@ -28,14 +28,7 @@
             </div>
             <div class="stat-title">Administrators</div>
             <div class="stat-value text-secondary" id="admin_users"></div>
-        </div>
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
-            <div class="stat-figure text-secondary">
-                <i data-lucide="shield" class="w-8 h-8"></i>
-            </div>
-            <div class="stat-title">Managers</div>
-            <div class="stat-value text-secondary" id="manager_user"></div>
-        </div>
+        </div> -->
         <div class="stat bg-base-100 shadow-lg rounded-lg">
             <div class="stat-figure text-accent">
                 <i data-lucide="headphones" class="w-8 h-8"></i>
@@ -52,7 +45,7 @@
                 <input type="text" placeholder="Search users..." class="input input-bordered w-full max-w-xs"
                     id="searchInput">
             </div>
-            <div class="form-control">
+            <!-- <div class="form-control">
                 <select class="select select-bordered" id="roleFilter">
                     <option value="">All Roles</option>
                     <option value="admin">Administrator</option>
@@ -60,7 +53,7 @@
                     <option value="support">Support Agent</option>
 
                 </select>
-            </div>
+            </div> -->
             <div class="form-control">
                 <select class="select select-bordered" id="statusFilter">
                     <option value="">All Status</option>
@@ -144,8 +137,7 @@
                     <label class="text-sm font-medium text-gray-700 mb-1" for="role">Role</label>
                     <select id="role" name="role" class="select select-bordered w-full">
                         <option value="">Select Role</option>
-                        <option value="admin">Administrator</option>
-                        <option value="manager">Manager</option>
+                        <!-- <option value="admin">Administrator</option> -->
                         <option value="support">Support Agent</option>
                     </select>
                 </div>
@@ -241,9 +233,9 @@
                     <label class="label font-medium text-sm text-gray-700" for="edit_role">Role</label>
                     <select id="edit_role" class="select select-bordered w-full">
                         <option value="">Select Role</option>
-                        <option value="admin">Administrator</option>
-                        <option value="manager">Manager</option>
+                        <!-- <option value="admin">Administrator</option> -->
                         <option value="support">Support Agent</option>
+                        <!-- <option value="customer">Customer</option> -->
                     </select>
                 </div>
 
@@ -280,7 +272,7 @@
 <script>
 //Base Url
 const BASE_URL = "http://localhost/nacom-computer-consults/api/auth"
-
+/*
 // Total User Fuctionality 
 const totalUsers = async () => {
     try {
@@ -322,28 +314,7 @@ const adminUsers = async () => {
 };
 
 adminUsers(); // Run on page load
-
-// Manager User Functionality
-const managerUsers = async () => {
-    try {
-        const res = await axios.get(`${BASE_URL}/viewUser.php`);
-        const data = res.data;
-
-        if (data.status === "success") {
-            // Count how many users have role = "manager"
-            const managerCount = data.data.filter(user => user.role === "manager").length;
-            document.getElementById("manager_user").innerHTML = managerCount;
-        } else {
-            console.error("Failed to fetch manager user count.");
-            document.getElementById("manager_user").innerHTML = 0;
-        }
-    } catch (error) {
-        console.error("Error fetching manager users:", error);
-        document.getElementById("manager_user").innerHTML = 0;
-    }
-};
-managerUsers(); // Run it on page load
-
+*/
 
 // Support User Functionality
 const supportUsers = async () => {
@@ -424,7 +395,7 @@ const renderUsers = (users) => {
 // Fetch all users
 const viewUsers = async () => {
     try {
-        const res = await axios.get(`${BASE_URL}/viewUser.php`);
+        const res = await axios.get(`${BASE_URL}/managerViewusers.php`);
         const {
             status,
             data
@@ -447,16 +418,16 @@ const viewUsers = async () => {
 // Filter logic
 const filterUsers = () => {
     const searchText = document.getElementById("searchInput").value.toLowerCase();
-    const role = document.getElementById("roleFilter").value;
+    // const role = document.getElementById("roleFilter").value;
     const status = document.getElementById("statusFilter").value;
 
     const filtered = allUsers.filter(user => {
         const matchSearch = user.username.toLowerCase().includes(searchText) ||
             user.email.toLowerCase().includes(searchText);
-        const matchRole = role ? user.role === role : true;
+        // const matchRole = role ? user.role === role : true;
         const matchStatus = status ? user.status === status : true;
 
-        return matchSearch && matchRole && matchStatus;
+        return matchSearch && matchStatus;
     });
 
     renderUsers(filtered);
@@ -465,14 +436,14 @@ const filterUsers = () => {
 // Clear filters
 const clearFilters = () => {
     document.getElementById("searchInput").value = "";
-    document.getElementById("roleFilter").value = "";
+    // document.getElementById("roleFilter").value = "";
     document.getElementById("statusFilter").value = "";
     renderUsers(allUsers);
 };
 
 // Event listeners
 document.getElementById("searchInput").addEventListener("input", filterUsers);
-document.getElementById("roleFilter").addEventListener("change", filterUsers);
+// document.getElementById("roleFilter").addEventListener("change", filterUsers);
 document.getElementById("statusFilter").addEventListener("change", filterUsers);
 document.querySelector(".btn.btn-outline").addEventListener("click", clearFilters);
 
@@ -524,6 +495,7 @@ const addUser = async () => {
         const data = res.data;
 
         if (data.status === "success") {
+            error_div.classList.add("hidden");
             success_text.textContent = data.message || "User added successfully!";
             success_div.classList.remove("hidden");
 
@@ -541,8 +513,8 @@ const addUser = async () => {
 
             // Refresh table (if needed)
             if (typeof viewUsers === "function") viewUsers();
-            totalUsers();
-            adminUsers();
+            // totalUsers();
+            // adminUsers();
             supportUsers();
         } else {
             error_text.textContent = data.message || "Failed to add user.";
@@ -605,8 +577,8 @@ const deleteUser = async () => {
 
         if (data.status === "success") {
             viewUsers();
-            totalUsers();
-            adminUsers();
+            // totalUsers();
+            // adminUsers();
             supportUsers();
 
             document.getElementById("my_modal_delete").close();
@@ -689,8 +661,8 @@ const editUser = async () => {
         if (data.status === "success") {
             error_div.classList.add("hidden");
             viewUsers();
-            totalUsers();
-            adminUsers();
+            // totalUsers();
+            // adminUsers();
             supportUsers();
             successMess(data.message) || "User updated successfully.";
             document.getElementById("my_modal_edit_user").close();

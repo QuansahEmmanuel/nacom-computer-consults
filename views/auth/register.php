@@ -48,6 +48,7 @@
                     class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm">
                     <option value="">-- Select Role --</option>
                     <option value="admin">Admin</option>
+                    <option value="manager">Manager</option>
                     <option value="support">Support</option>
                 </select>
             </div>

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $status   = strtolower(trim($_POST['status'] ?? 'inactive'));  // Default to 'inactive'
 
     // 2. Validate required fields
-    $allowedRoles   = ['admin', 'support', 'customer'];
+    $allowedRoles   = ['admin', 'support', 'manager'];
     $allowedStatus  = ['active', 'inactive'];
 
     if (empty($username) || empty($email) || empty($password) || empty($role) || empty($status)) {
