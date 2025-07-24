@@ -13,37 +13,56 @@
 
 <!-- Main Content -->
 <div class="container mx-auto mt-8">
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
-            <div class="stat-figure text-primary">
-                <i data-lucide="users" class="w-8 h-8"></i>
-            </div>
-            <div class="stat-title">Total Users</div>
-            <div class="stat-value text-primary" id="total_users"></div>
-        </div>
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
-            <div class="stat-figure text-secondary">
-                <i data-lucide="shield" class="w-8 h-8"></i>
-            </div>
-            <div class="stat-title">Administrators</div>
-            <div class="stat-value text-secondary" id="admin_users"></div>
-        </div>
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
-            <div class="stat-figure text-secondary">
-                <i data-lucide="shield" class="w-8 h-8"></i>
-            </div>
-            <div class="stat-title">Managers</div>
-            <div class="stat-value text-secondary" id="manager_user"></div>
-        </div>
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
-            <div class="stat-figure text-accent">
-                <i data-lucide="headphones" class="w-8 h-8"></i>
-            </div>
-            <div class="stat-title">Support Agents</div>
-            <div class="stat-value text-accent" id="support_users"></div>
-        </div>
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
+    <!-- Total Users -->
+    <div class="stat bg-base-100 shadow-lg rounded-lg relative px-4 py-6 hover:-translate-y-1">
+      <div>
+        <div class="stat-title">Total Users</div>
+        <div class="stat-value text-primary" id="total_users"></div>
+      </div>
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+        <i class="fas fa-users text-blue-600 text-xl"></i>
+      </div>
     </div>
+
+    <!-- Administrators -->
+    <div class="stat bg-base-100 shadow-lg rounded-lg relative px-4 py-6 hover:-translate-y-1">
+      <div>
+        <div class="stat-title">Administrators</div>
+        <div class="stat-value text-secondary" id="admin_users"></div>
+      </div>
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+        <i class="fas fa-user-shield text-purple-600 text-xl"></i>
+      </div>
+    </div>
+
+    <!-- Managers -->
+    <div class="stat bg-base-100 shadow-lg rounded-lg relative px-4 py-6 hover:-translate-y-1">
+      <div>
+        <div class="stat-title">Managers</div>
+        <div class="stat-value text-secondary" id="manager_user"></div>
+      </div>
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center ">
+        <i class="fas fa-user-tie text-green-600 text-xl"></i>
+      </div>
+    </div>
+
+    <!-- Support Agents -->
+    <div class="stat bg-base-100 shadow-lg rounded-lg relative px-4 py-6 hover:-translate-y-1">
+      <div>
+        <div class="stat-title">Support Agents</div>
+        <div class="stat-value text-accent" id="support_users"></div>
+      </div>
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+        <i class="fas fa-headset text-orange-600 text-xl"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
     <!-- Filters -->
     <div class="bg-base-100 shadow-lg rounded-lg p-6 mb-6">

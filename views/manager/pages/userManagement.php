@@ -29,13 +29,16 @@
             <div class="stat-title">Administrators</div>
             <div class="stat-value text-secondary" id="admin_users"></div>
         </div> -->
-        <div class="stat bg-base-100 shadow-lg rounded-lg">
-            <div class="stat-figure text-accent">
-                <i data-lucide="headphones" class="w-8 h-8"></i>
-            </div>
-            <div class="stat-title">Support Agents</div>
-            <div class="stat-value text-accent" id="support_users"></div>
-        </div>
+      <div class="stat bg-base-100 shadow-lg rounded-lg relative px-4 py-6">
+  <div>
+    <div class="stat-title">Support Agents</div>
+    <div class="stat-value text-accent" id="support_users"></div>
+  </div>
+  <div class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+    <i class="fas fa-headset text-orange-600 text-xl"></i>
+  </div>
+</div>
+
     </div>
 
     <!-- Filters -->

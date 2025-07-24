@@ -21,7 +21,7 @@ function nav_link_classes($currentPage, $targetPage) {
 
 <!-- Sidebar -->
 <aside id="sidebar"
-    class="w-64 bg-red-300 text-white fixed lg:relative h-full lg:h-screen z-50 -translate-x-full lg:translate-x-0 transform transition-transform duration-300 ease-in-out">
+    class="w-64 bg-gray-600 text-white fixed lg:relative h-full lg:h-screen z-50 -translate-x-full lg:translate-x-0 transform transition-transform duration-300 ease-in-out">
     <!-- Logo Section -->
     <div class="p-6 border-b border-gray-700">
         <div class="flex items-center space-x-3">
