@@ -36,7 +36,7 @@
                 <div>
                     <p class="text-gray-600 text-sm">Services</p>
                     <p class="text-3xl font-bold text-gray-800" id="total_service"></p>
-                    <p class="text-gray-600 text-sm">0% from last month</p>
+                    <p class="text-gray-600 text-sm">18% from last month</p>
                 </div>
                 <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                     <i class="fas fa-cog text-purple-600 text-xl"></i>
@@ -95,7 +95,7 @@
                     <div>
                         <a href="index.php?page=bookings">
                             <p class="font-medium text-gray-800">Manage Bookings</p>
-                            <p class="text-sm text-gray-600">View and manage customer bookings</p>
+                            <p class="text-sm text-gray-600">View and Assign customer bookings</p>
                         </a>
                     </div>
                     <i class="fas fa-chevron-right text-gray-400 ml-auto"></i>
@@ -109,7 +109,7 @@
                     <div>
                         <a href="index.php?page=enquiries">
                             <p class="font-medium text-gray-800">Review Enquiries</p>
-                            <p class="text-sm text-gray-600">Respond to customer enquiries</p>
+                            <p class="text-sm text-gray-600"> View And Assign customer enquiries</p>
                         </a>
                     </div>
                     <i class="fas fa-chevron-right text-gray-400 ml-auto"></i>
@@ -123,7 +123,7 @@
                     <div>
                         <a href="index.php?page=services">
                             <p class="font-medium text-gray-800">Manage Services</p>
-                            <p class="text-sm text-gray-600">Add or edit service offerings</p>
+                            <p class="text-sm text-gray-600">View All services</p>
                         </a>
                     </div>
                     <i class="fas fa-chevron-right text-gray-400 ml-auto"></i>
