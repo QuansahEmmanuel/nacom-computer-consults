@@ -1,3 +1,16 @@
+<?php
+include_once __DIR__ . '/../../../api/auth/auth_check.php';
+
+// Restrict access to admins and managers only
+$allowed_roles = ['admin', 'manager'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    // Redirect to 404 page
+    header("Location: /nacom-computer-consults/views/manager/pages/404.php");
+    exit;
+}
+?>
+
 <!-- Loading Spinner -->
 <div id="loading" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
     <div class="text-center">

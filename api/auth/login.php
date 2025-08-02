@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     /* ----------------------------------------------------------
        2.  Look up the user
     ---------------------------------------------------------- */
-    $sql = "SELECT id, email, password, role FROM users WHERE email = ?";
+    $sql = "SELECT id, username, email, password, role FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     /* ----------------------------------------------------------
        3.  Check password
     ---------------------------------------------------------- */
-    $stmt->bind_result($user_id, $db_email, $db_hashed_password, $role);
+    $stmt->bind_result($user_id, $username, $db_email, $db_hashed_password, $role);
+
     $stmt->fetch();
 
     if (!password_verify($password, $db_hashed_password)) {
@@ -56,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ---------------------------------------------------------- */
     $_SESSION['user_id'] = $user_id;
     $_SESSION['email']   = $db_email;
+    $_SESSION['username'] = $username;
     $_SESSION['role']    = $role;
 
     $stmt->close();

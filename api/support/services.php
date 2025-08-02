@@ -1,6 +1,7 @@
 <?php
 
  require_once('../../includes/db.php');
+ 
     $sql = "SELECT * FROM services ORDER BY created_at DESC";
     $result = $conn->query($sql);
     $bookings = [];
@@ -12,4 +13,3 @@
         "status" => "success",
         "data" => $bookings
     ]);         
-

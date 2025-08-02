@@ -44,7 +44,7 @@
                     <a href="#contact"
                         class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
                     <a href="../views/auth/login.php"
-                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Admin
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                         Login</a>
                 </div>
 
@@ -65,7 +65,7 @@
                     class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Services</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Contact</a>
                 <a href="../views/auth/login.php"
-                    class="block mx-3 mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center">Admin
+                    class="block mx-3 mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center">
                     Login</a>
             </div>
         </div>

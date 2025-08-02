@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/../../../api/auth/auth_check.php'; ?>
 <!-- Loading Spinner -->
 <div id="loading" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
     <div class="text-center">

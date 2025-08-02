@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Login</title>
+    <title>NACOM Login</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Remix Icon CDN (for ri-shield-user-line icon) -->
@@ -18,7 +18,7 @@
                 <i class="ri-shield-user-line text-white text-2xl"></i>
             </div>
             <h2 class="text-2xl font-bold text-gray-900">NACOM || Login</h2>
-            <p class="text-gray-600 mt-2">Access the admin || suport center dashboard</p>
+            <p class="text-gray-600 mt-2">Access the admin || manager || suport dashboard</p>
         </div>
 
         <form class="space-y-6" action="../../api/auth/login.php" method="POST">

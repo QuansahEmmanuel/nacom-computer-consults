@@ -79,13 +79,13 @@ function nav_link_classes($currentPage, $targetPage) {
 
     <!-- Logout -->
     <div class="absolute bottom-4 left-4 right-4">
-        <button
+        <a href="../../api/auth/logout.php"
             class="w-full flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer">
             <div class="w-5 h-5 flex items-center justify-center">
                 <i class="fa-solid fa-right-from-bracket text-lg"></i>
             </div>
             <span class="font-medium">Logout</span>
-        </button>
+        </a>
     </div>
 </aside>
 
