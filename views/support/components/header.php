@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../../public/js/ErrorMessage_Plugin/iziToast.min.css">
     <script src="../../public/js/ErrorMessage_Plugin/iziToast.min.js"></script>
 
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
