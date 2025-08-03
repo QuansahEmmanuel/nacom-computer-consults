@@ -140,10 +140,6 @@
 </div>
 
 <script>
-// Ensure Axios is loaded before this script runs
-if (typeof axios === 'undefined') {
-    throw new Error('Axios library is not loaded. Please include it before this script.');
-}
 const BASE_URL = "http://localhost/nacom-computer-consults/api/admin"; // Ensure this URL is correct
 
 function getElementOrThrow(id) {
@@ -188,35 +184,44 @@ function hideMessages() {
 
 // Fetch support agents
 async function fetchSupportAgents() {
-    // console.log("1. Starting fetchSupportAgents..."); // <-- ADD THIS
+    console.log("1. Starting fetchSupportAgents...");
     try {
         hideMessages();
         const res = await axios.get(`${BASE_URL}/enquiries.php?agents=1`);
-        // console.log("2. Raw response from /enquiries.php?agents=1:", res); // <-- ADD THIS
+        console.log("2. Raw response from /enquiries.php?agents=1:", res);
+
         if (res.data && res.data.status === "success") {
-            // Check what the backend actually sent under 'data'
-            // console.log("3a. Backend 'data' field:", res.data.data); // <-- ADD THIS
+            console.log("3a. Backend 'data' field:", res.data.data);
             // The frontend code expects res.data.agents, but the backend sends the list under res.data.data
             // Let's try res.data.data first, and fallback to res.data.agents if that's empty/undefined.
             supportAgents = res.data.data || res.data.agents || [];
-            // console.log("4. Processed supportAgents array:", supportAgents); // <-- ADD THIS
+            console.log("4. Processed supportAgents array:", supportAgents);
+
+            // Validate agent data structure
+            if (supportAgents.length > 0) {
+                const firstAgent = supportAgents[0];
+                if (!firstAgent.id || !firstAgent.name) {
+                    console.warn("Warning: Agent data missing required fields (id, name):", firstAgent);
+                }
+            }
         } else {
             const errorMsg = res.data?.message || "Failed to load support agents";
-            // console.warn("API Response (Agents):", res.data);
+            console.warn("API Response (Agents):", res.data);
             showError(errorMsg);
         }
     } catch (err) {
-        // console.error("Agent fetch failed:", err);
+        console.error("Agent fetch failed:", err);
         let userMessage = "Error loading support agents.";
+
         if (err.response) {
             userMessage += ` Server error: ${err.response.status}`;
             if (err.response.data?.message) {
                 userMessage += ` - ${err.response.data.message}`;
             }
-            // console.error("Detailed server error response:", err.response.data); // <-- ADD THIS
+            console.error("Detailed server error response:", err.response.data);
         } else if (err.request) {
             userMessage += " No response from server. Check connection and URL.";
-            // console.error("No response received. Request details:", err.request); // <-- ADD THESE
+            console.error("No response received. Request details:", err.request);
         } else {
             userMessage += ` Request error: ${err.message}`;
         }
@@ -226,33 +231,79 @@ async function fetchSupportAgents() {
 
 // Populate modal assignment dropdown
 function populateModalDropdown(selectedId = null) {
-    // console.log("5. Starting populateModalDropdown with selectedId:", selectedId); // <-- ADD THIS
-    // console.log("6. Current supportAgents array:", supportAgents); // <-- ADD THIS
+    console.log("5. Starting populateModalDropdown with selectedId:", selectedId);
+    console.log("6. Current supportAgents array:", supportAgents);
+
     const dropdown = document.getElementById("modal_agent_dropdown");
+    if (!dropdown) {
+        console.error("Modal agent dropdown element not found!");
+        return;
+    }
+
     let options = '<option value="">Select Agent (None)</option>';
-    supportAgents.forEach(agent => {
-        const selected = agent.id == selectedId ? "selected" : "";
-        options += `<option value="${escapeHtml(agent.id)}" ${selected}>${escapeHtml(agent.name)}</option>`;
-    });
+
+    if (!supportAgents || supportAgents.length === 0) {
+        console.warn("No support agents available for dropdown");
+        options += '<option value="" disabled>No agents available</option>';
+    } else {
+        supportAgents.forEach(agent => {
+            if (!agent.id || !agent.name) {
+                console.warn("Skipping agent with missing data:", agent);
+                return;
+            }
+            const selected = agent.id == selectedId ? "selected" : "";
+            options += `<option value="${escapeHtml(agent.id)}" ${selected}>${escapeHtml(agent.name)}</option>`;
+        });
+    }
+
     dropdown.innerHTML = options;
-    // console.log("7. Final HTML set in dropdown:", options); // <-- ADD THIS
+    console.log("7. Final HTML set in dropdown:", options);
 }
 
-// Get agent name by ID
+// Get agent name by ID with improved error handling
 function getAgentNameById(agentId) {
     if (!agentId) return 'Unassigned';
+
+    if (!supportAgents || supportAgents.length === 0) {
+        console.warn("No support agents loaded when trying to get agent name for ID:", agentId);
+        return 'Loading...';
+    }
+
     const agent = supportAgents.find(a => a.id == agentId);
-    return agent ? agent.name : 'Unknown Agent';
+    if (!agent) {
+        console.warn("Agent not found for ID:", agentId);
+        return 'Unknown Agent';
+    }
+
+    return agent.name || 'Unnamed Agent';
 }
 
-// Escape HTML to prevent XSS
+// Escape HTML to prevent XSS with better type checking
 function escapeHtml(text) {
-    if (typeof text !== 'string') return String(text);
+    if (text === null || text === undefined) return '';
+    if (typeof text !== 'string') {
+        text = String(text);
+    }
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 }
 
+// Helper function to refresh agents data
+async function refreshSupportAgents() {
+    console.log("Refreshing support agents data...");
+    await fetchSupportAgents();
+    // Repopulate any existing dropdowns
+    const modalDropdown = document.getElementById("modal_agent_dropdown");
+    if (modalDropdown) {
+        populateModalDropdown();
+    }
+}
+
+// Helper function to check if agents are loaded
+function areAgentsLoaded() {
+    return supportAgents && supportAgents.length > 0;
+}
 // Format datetime
 function formatDateTime(datetime) {
     if (!datetime) return 'N/A';

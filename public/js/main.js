@@ -235,12 +235,14 @@ document
     if (!name || !email || !subject || !message) {
       errorText.innerHTML = "All fields are required.";
       errorDiv.classList.remove("hidden");
+      setTimeout(() => errorDiv.classList.add("hidden"), 5000); // Hide after 5s
       return;
     }
 
     if (!validateEmail(email)) {
       errorText.innerHTML = "Please enter a valid email address.";
       errorDiv.classList.remove("hidden");
+      setTimeout(() => errorDiv.classList.add("hidden"), 5000); // Hide after 5s
       return;
     }
 
@@ -258,14 +260,19 @@ document
         successText.innerHTML = data.message || "Enquiry sent successfully!";
         successDiv.classList.remove("hidden");
         document.getElementById("enquiries_form").reset();
+
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => successDiv.classList.add("hidden"), 5000);
       } else {
         errorText.innerHTML = data.message || "Something went wrong.";
         errorDiv.classList.remove("hidden");
+        setTimeout(() => errorDiv.classList.add("hidden"), 5000); // Hide after 5s
       }
     } catch (error) {
       console.error("Error:", error);
       errorText.innerHTML =
         error.message || "Something went wrong. Please try again.";
       errorDiv.classList.remove("hidden");
+      setTimeout(() => errorDiv.classList.add("hidden"), 5000); // Hide after 5s
     }
   });
