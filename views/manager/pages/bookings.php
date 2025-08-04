@@ -204,6 +204,33 @@
 </dialog>
 
 
+<!-- View Replies Modal -->
+<dialog id="viewRepliesModal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box relative bg-white rounded-lg shadow-xl max-w-2xl w-full p-0">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4 rounded-t-lg">
+            <h3 class="text-lg font-semibold text-gray-800">Replies to Enquiry</h3>
+            <button onclick="closeViewRepliesModal()"
+                class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-full p-1"
+                aria-label="Close modal">
+                <span class="text-2xl font-light">&times;</span>
+            </button>
+        </div>
+
+        <!-- Replies Content -->
+        <div id="repliesContent" class="p-6 space-y-4 max-h-96 overflow-y-auto text-gray-700">
+            <!-- Replies will be dynamically inserted here -->
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-action border-t border-gray-200 px-6 py-4 text-right bg-gray-50 rounded-b-lg">
+            <button onclick="closeViewRepliesModal()" class="btn btn-neutral text-white hover:bg-gray-600">
+                Close
+            </button>
+        </div>
+    </div>
+</dialog>
+
 <script>
 const BASE_URL = "http://localhost/nacom-computer-consults/api/admin";
 
@@ -283,10 +310,20 @@ const viewBookings = async (filters = {}) => {
                   <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${booking.resolution_status}</span>
                 </td>
                 <td class="py-3 px-4">
-                  <button class="text-blue-600 hover:text-blue-800 mr-2" title="Edit Agent" onclick="openEditAgentModal(${booking.id})"><i class="fas fa-edit"></i></button>
-                  <button class="text-green-600 hover:text-green-800 mr-2" title="Assign Agent" onclick="openAssignAgentModal(${booking.id})"><i class="fas fa-user-check"></i></button>
-             <!-- <button class="text-red-600 hover:text-red-800" title="Delete Booking" onclick="openDeleteModal(${booking.id})"><i class="fas fa-trash"></i></button> -->
-                </td>
+  <button class="text-blue-600 hover:text-blue-800 mr-2" title="Edit Agent" onclick="openEditAgentModal(${booking.id})">
+    <i class="fas fa-edit"></i>
+  </button>
+  <button class="text-green-600 hover:text-green-800 mr-2" title="Assign Agent" onclick="openAssignAgentModal(${booking.id})">
+    <i class="fas fa-user-check"></i>
+  </button>
+  <button class="text-purple-600 hover:text-purple-800 mr-2" title="View Replies" onclick="openViewRepliesModal(${booking.id})">
+    <i class="fas fa-comments"></i>
+  </button>
+  <!--<button class="text-red-600 hover:text-red-800" title="Delete Booking" onclick="openDeleteModal(${booking.id})">
+    <i class="fas fa-trash"></i>
+  </button>-->
+</td>
+
             `;
 
             tbody.appendChild(row);
@@ -567,5 +604,66 @@ function validateEmail(email) {
 function validatePhone(phone) {
     const re = /^\+?[0-9\s\-()]{7,}$/;
     return re.test(phone);
+}
+
+
+
+
+function openViewRepliesModal(bookingId) {
+    const modal = document.getElementById('viewRepliesModal');
+    const repliesContainer = document.getElementById('repliesContent');
+
+    repliesContainer.innerHTML = '<p class="text-gray-400 text-sm">Loading replies...</p>';
+
+    axios.get(`${BASE_URL}/getReplies.php`, {
+            params: {
+                booking_id: bookingId
+            }
+        })
+        .then(response => {
+            const data = response.data;
+            repliesContainer.innerHTML = '';
+
+            if (Array.isArray(data) && data.length === 0) {
+                repliesContainer.innerHTML =
+                    '<p class="text-gray-500 text-sm">No replies found for this enquiry.</p>';
+            } else if (Array.isArray(data)) {
+                data.forEach(reply => {
+                    const replyElement = document.createElement('div');
+                    replyElement.classList.add('bg-blue-50', 'p-4', 'rounded', 'border-l-4',
+                        'border-blue-400');
+
+                    replyElement.innerHTML = `
+                    <p class="text-sm text-gray-800"><strong>Agent ${reply.agent_name}:</strong> ${reply.message}</p>
+                    <span class="text-xs text-gray-500">${formatDate(reply.reply_date)}</span>
+                `;
+                    repliesContainer.appendChild(replyElement);
+                });
+            } else {
+                repliesContainer.innerHTML = '<p class="text-red-500 text-sm">Invalid data received.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching replies:', error);
+            repliesContainer.innerHTML = '<p class="text-red-500 text-sm">Failed to load replies.</p>';
+        });
+
+    modal.showModal();
+}
+
+function closeViewRepliesModal() {
+    const modal = document.getElementById('viewRepliesModal');
+    modal.close();
+}
+
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
 }
 </script>
