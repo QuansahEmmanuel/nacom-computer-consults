@@ -209,7 +209,7 @@
     <div class="modal-box relative bg-white rounded-lg shadow-xl max-w-2xl w-full p-0">
         <!-- Header -->
         <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4 rounded-t-lg">
-            <h3 class="text-lg font-semibold text-gray-800">Replies to Enquiry</h3>
+            <h3 class="text-lg font-semibold text-gray-800">Replies to Bookings</h3>
             <button onclick="closeViewRepliesModal()"
                 class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-full p-1"
                 aria-label="Close modal">
