@@ -173,10 +173,11 @@ const renderEnquiries = async (enquiries) => {
                 </div>
             `).join('') : '';
 
-            const statusClass = enquiry.status === 'resolved' && replies.length > 0 ?
+            const statusClass = replies.length > 0 ?
                 'bg-green-100 text-green-700' :
                 'bg-red-100 text-red-700';
-            const statusText = enquiry.status === 'resolved' && replies.length > 0 ?
+
+            const statusText = replies.length > 0 ?
                 'Attended' :
                 'Unattended';
 

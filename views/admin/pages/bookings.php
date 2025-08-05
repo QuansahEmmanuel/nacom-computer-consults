@@ -40,7 +40,7 @@
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Date</th>
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Status</th>
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Assigned Agent</th>
-                        <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Resolution</th>
+                        <!-- <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Resolution</th> -->
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Actions</th>
                     </tr>
                 </thead>
@@ -305,10 +305,10 @@ const viewBookings = async (filters = {}) => {
                   </span>
                 </td>
                 <td class="py-3 px-4 text-sm text-gray-800">${booking.assigned_agent_name || 'Unassigned'}</td>
-                <td class="py-3 px-4">
-                  <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${booking.resolution_status}</span>
-                </td>
-                <td class="py-3 px-4">
+                <!-- <td class="py-3 px-4">
+                 <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${booking.resolution_status}</span> 
+                </td> -->
+                <td class="">
                         <button class="text-blue-600 hover:text-blue-800 mr-2" title="Edit Agent" onclick="openEditAgentModal(${booking.id})">
                             <i class="fas fa-edit"></i>
                         </button>

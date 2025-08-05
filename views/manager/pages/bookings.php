@@ -40,7 +40,7 @@
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Date</th>
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Status</th>
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Assigned Agent</th>
-                        <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Resolution</th>
+                        <!--  <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Resolution</th> -->
                         <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Actions</th>
                     </tr>
                 </thead>
@@ -306,22 +306,22 @@ const viewBookings = async (filters = {}) => {
                   </span>
                 </td>
                 <td class="py-3 px-4 text-sm text-gray-800">${booking.assigned_agent_name || 'Unassigned'}</td>
-                <td class="py-3 px-4">
+              <!--  <td class="py-3 px-4">
                   <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${booking.resolution_status}</span>
-                </td>
+                </td> -->
                 <td class="py-3 px-4">
-  <button class="text-blue-600 hover:text-blue-800 mr-2" title="Edit Agent" onclick="openEditAgentModal(${booking.id})">
-    <i class="fas fa-edit"></i>
-  </button>
-  <button class="text-green-600 hover:text-green-800 mr-2" title="Assign Agent" onclick="openAssignAgentModal(${booking.id})">
-    <i class="fas fa-user-check"></i>
-  </button>
-  <button class="text-purple-600 hover:text-purple-800 mr-2" title="View Replies" onclick="openViewRepliesModal(${booking.id})">
-    <i class="fas fa-comments"></i>
-  </button>
-  <!--<button class="text-red-600 hover:text-red-800" title="Delete Booking" onclick="openDeleteModal(${booking.id})">
-    <i class="fas fa-trash"></i>
-  </button>-->
+                <button class="text-blue-600 hover:text-blue-800 mr-2" title="Edit Agent" onclick="openEditAgentModal(${booking.id})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="text-green-600 hover:text-green-800 mr-2" title="Assign Agent" onclick="openAssignAgentModal(${booking.id})">
+                    <i class="fas fa-user-check"></i>
+                </button>
+                <button class="text-purple-600 hover:text-purple-800 mr-2" title="View Replies" onclick="openViewRepliesModal(${booking.id})">
+                    <i class="fas fa-comments"></i>
+                </button>
+                <!--<button class="text-red-600 hover:text-red-800" title="Delete Booking" onclick="openDeleteModal(${booking.id})">
+                    <i class="fas fa-trash"></i>
+                </button>-->
 </td>
 
             `;

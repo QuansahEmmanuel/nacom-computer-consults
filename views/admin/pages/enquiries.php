@@ -611,13 +611,40 @@ document.addEventListener("keydown", (e) => {
 
 
 
-function openViewRepliesModal(bookingId) {
-    document.getElementById('viewRepliesModal').showModal();
 
+function openViewRepliesModal(enquiry_reply_Id) {
+    document.getElementById('viewRepliesModal').showModal();
+    const repliesContent = document.getElementById('repliesContent');
+    repliesContent.innerHTML = `<p class="text-gray-500">Loading replies...</p>`;
+
+    axios.get(`${BASE_URL}/fetchBookingReplies.php?booking_id=${enquiry_reply_Id}`)
+        .then(response => {
+            const replies = response.data;
+            if (Array.isArray(replies) && replies.length > 0) {
+                repliesContent.innerHTML = '';
+                replies.forEach(reply => {
+                    const replyHTML = `
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-800">${reply.agent_name}</span>
+                                <span class="text-sm text-gray-500">${new Date(reply.reply_date).toLocaleString()}</span>
+                            </div>
+                            <div class="text-gray-700 whitespace-pre-line">${reply.reply}</div>
+                        </div>
+                    `;
+                    repliesContent.innerHTML += replyHTML;
+                });
+            } else {
+                repliesContent.innerHTML = `<p class="text-gray-500">No replies yet.</p>`;
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            repliesContent.innerHTML = `<p class="text-red-500">Failed to load replies. Please try again.</p>`;
+        });
 }
 
-function closeViewRepliesModal(bookingId) {
+function closeViewRepliesModal() {
     document.getElementById('viewRepliesModal').close();
-
 }
 </script>

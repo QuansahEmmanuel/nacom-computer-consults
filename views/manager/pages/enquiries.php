@@ -139,6 +139,33 @@
     </div>
 </div>
 
+<!-- View Replies Modal -->
+<dialog id="viewRepliesModal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box relative bg-white rounded-lg shadow-xl max-w-2xl w-full p-0">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4 rounded-t-lg">
+            <h3 class="text-lg font-semibold text-gray-800">Replies to Enquiry</h3>
+            <button onclick="closeViewRepliesModal()"
+                class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-full p-1"
+                aria-label="Close modal">
+                <span class="text-2xl font-light">&times;</span>
+            </button>
+        </div>
+
+        <!-- Replies Content -->
+        <div id="repliesContent" class="p-6 space-y-4 max-h-96 overflow-y-auto text-gray-700">
+            <!-- Replies will be dynamically inserted here -->
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-action border-t border-gray-200 px-6 py-4 text-right bg-gray-50 rounded-b-lg">
+            <button onclick="closeViewRepliesModal()" class="btn btn-neutral text-white hover:bg-gray-600">
+                Close
+            </button>
+        </div>
+    </div>
+</dialog>
+
 <script>
 const BASE_URL = "http://localhost/nacom-computer-consults/api/admin"; // Ensure this URL is correct
 
@@ -378,6 +405,9 @@ function renderEnquiry(item) {
                             onclick="openViewModal('${escapeHtml(id)}','${customerName}','${customerEmail}','${subjectEscaped}','${messageEscaped}','${escapeHtml(supportAgentId)}')">
                         <i class="fas fa-eye"></i>
                     </button>
+                     <button class="text-purple-600 hover:text-purple-800 mr-2" title="View Replies" onclick="openViewRepliesModal(${escapeHtml(id)})">
+                            <i class="fas fa-comments"></i>
+                        </button>
                     <!-- <button class="text-red-600 hover:text-red-800 p-1 rounded transition-colors"
                             title="Delete Enquiry"
                             onclick="openDeleteModal('${escapeHtml(id)}')">
@@ -627,4 +657,41 @@ document.addEventListener("keydown", (e) => {
         if (!deleteModal.classList.contains("hidden")) closeModal(deleteModal);
     }
 });
+
+
+function openViewRepliesModal(enquiry_reply_Id) {
+    document.getElementById('viewRepliesModal').showModal();
+    const repliesContent = document.getElementById('repliesContent');
+    repliesContent.innerHTML = `<p class="text-gray-500">Loading replies...</p>`;
+
+    axios.get(`${BASE_URL}/fetchBookingReplies.php?booking_id=${enquiry_reply_Id}`)
+        .then(response => {
+            const replies = response.data;
+            if (Array.isArray(replies) && replies.length > 0) {
+                repliesContent.innerHTML = '';
+                replies.forEach(reply => {
+                    const replyHTML = `
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-800">${reply.agent_name}</span>
+                                <span class="text-sm text-gray-500">${new Date(reply.reply_date).toLocaleString()}</span>
+                            </div>
+                            <div class="text-gray-700 whitespace-pre-line">${reply.reply}</div>
+                        </div>
+                    `;
+                    repliesContent.innerHTML += replyHTML;
+                });
+            } else {
+                repliesContent.innerHTML = `<p class="text-gray-500">No replies yet.</p>`;
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            repliesContent.innerHTML = `<p class="text-red-500">Failed to load replies. Please try again.</p>`;
+        });
+}
+
+function closeViewRepliesModal() {
+    document.getElementById('viewRepliesModal').close();
+}
 </script>
